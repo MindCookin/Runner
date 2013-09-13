@@ -24,7 +24,7 @@ public class CannonShoot : MonoBehaviour {
 	void doShoot() {
 		
 		cannonPicker.ball.rigidbody.WakeUp();
-		cannonPicker.ball.rigidbody.AddForce( transform.up * power, ForceMode.Impulse );
+		cannonPicker.ball.rigidbody.AddForce( transform.up * power, ForceMode.VelocityChange );
 		
 		cannonPicker.Remove();
 	}

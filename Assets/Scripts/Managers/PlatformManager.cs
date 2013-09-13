@@ -12,7 +12,7 @@ public class PlatformManager : MonoBehaviour {
 	private Vector3 nextPosition = Vector3.zero;
 	private Queue<Transform> platformQueue;
 	
-	private Runner player;
+	private PlayerMove player;
 	
 	void Awake() {
 	
@@ -20,7 +20,7 @@ public class PlatformManager : MonoBehaviour {
 		GameEventManager.GameOver += GameOver;	
 	
 		platformQueue	= new Queue<Transform>( queuedQuantity );
-		player 	= GameObject.FindGameObjectWithTag("Player").GetComponent<Runner>();
+		player 	= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
 		
 		for( int i = 0; i < queuedQuantity; i++ )
 		{

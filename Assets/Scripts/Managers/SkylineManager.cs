@@ -13,13 +13,13 @@ public class SkylineManager : MonoBehaviour {
 	private Vector3 nextPosition;
 	private Queue<Transform> objectQueue;
 	
-	private Runner runner;
+	private PlayerMove runner;
 	
 	void Awake(){
 		
 		// find player and initialize Runner
 		GameObject rnr = GameObject.FindGameObjectWithTag("Player");
-		runner = rnr.GetComponent<Runner>();
+		runner = rnr.GetComponent<PlayerMove>();
 	}
 	
 	void Start () {

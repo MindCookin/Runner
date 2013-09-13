@@ -13,7 +13,6 @@ public class CannonPicker : MonoBehaviour {
 	public void Fill() {
 		
 		filled = true;
-		player.rigidbody.useGravity = false;
 		player.rigidbody.Sleep();
 		player.transform.position = transform.position;
 		player.transform.renderer.enabled = false;

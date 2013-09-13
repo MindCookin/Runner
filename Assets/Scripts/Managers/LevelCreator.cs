@@ -15,11 +15,11 @@ public class LevelCreator : MonoBehaviour {
 	private Vector3 nextPosition;
 	private Queue<Transform> prefabQueue;
 	
-	private Runner player;
+	private PlayerMove player;
 
 	void Awake() {
 		
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Runner>();
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;	
