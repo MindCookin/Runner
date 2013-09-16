@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class PlatformManager : MonoBehaviour {
 	
+	public float enemyProbability;
 	public int queuedQuantity;
 	public int recycleOffset;
 	

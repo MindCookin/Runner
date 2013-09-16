@@ -86,7 +86,7 @@ public class StaticItemsManager : MonoBehaviour
 	void RecycleItem( Transform item ) {
 		
 		Vector3 itemPosition = ( item.tag == "Cannon" ) ? cannonPosition : pickupPosition;
-		itemPosition.x = lastItemPosition.x + Random.Range( 5, 15 );
+		itemPosition.x = lastItemPosition.x + Random.Range( 20, 30 );
 		
 		item.GetComponent<SimpleItem>().Reset();
 		item.position = itemPosition;
@@ -108,4 +108,3 @@ public class StaticItemsManager : MonoBehaviour
 		enabled = false;
 	}
 }
-

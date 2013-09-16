@@ -20,7 +20,7 @@ public class SimpleItem : MonoBehaviour
 	
 	void Update () {
 		
-		if( transform.localPosition.x + 20 < runner.DistanceTraveled )
+		if( transform.localPosition.x + 50 < runner.DistanceTraveled )
 			gameObject.SetActive(false);
 	}
 

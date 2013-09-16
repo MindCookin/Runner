@@ -3,11 +3,15 @@ using System.Collections;
 
 public class Platform : Entity
 {
+	public Transform enemyPrefab;
 	public Vector3 minSize, maxSize, minGap, maxGap;
-	public float minY, maxY;
+	public float minY, maxY, enemyPercent;
 	
 	public Material[] materials;
 	public PhysicMaterial[] physicMaterials;
+	
+	private EnemyPlace enemyPlace;
+	private Transform enemy;
 	
 	public override void Place (Vector3 nextPosition)
 	{
@@ -43,5 +47,19 @@ public class Platform : Entity
 			mNextPosition.y = minY + maxGap.y;
 		else if(mNextPosition.y > maxY)
 			mNextPosition.y = maxY - maxGap.y;
+		
+		if( Random.value < enemyPercent )
+		{
+			if( enemyPlace == null )
+				CreateEnemy();
+			
+			enemyPlace.Place( transform );
+		}
+	}
+	
+	private void CreateEnemy(){
+		enemy = (Transform)Instantiate(enemyPrefab);
+		enemyPlace = enemy.GetComponent<EnemyPlace>();
+		enemy.parent = transform.parent;
 	}
 }

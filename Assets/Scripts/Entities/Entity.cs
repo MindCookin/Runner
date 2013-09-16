@@ -5,7 +5,7 @@ public class Entity : MonoBehaviour
 {
 	protected Vector3 mNextPosition = Vector3.zero;
 	
-	void Start()
+	void Awake()
 	{
 		// listen to game events
 		GameEventManager.GameStart += GameStart;

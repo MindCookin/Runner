@@ -33,6 +33,15 @@ public class PlayerMove : MonoBehaviour {
 	
 	void Update () {
 		
+		//******************************* DEBUG ***************************
+		rigidbody.isKinematic = true;
+		transform.Translate( 0.1f, 0, 0 );
+		_distanceTraveled = transform.localPosition.x;
+		GUIManager.SetDistance( _distanceTraveled );
+		return;
+		//******************************* end DEBUG ***************************
+		
+		
 		if(  Input.GetButtonDown("Jump") )
 		{
 			if( _touchingPlatform )
