@@ -44,34 +44,41 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MissileManager.cs" />
+     <Compile Include="Assets\Scripts\Bullet\BulletMove.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Cannon\CannonItem.cs" />
+     <Compile Include="Assets\Scripts\Cannon\CannonMove.cs" />
+     <Compile Include="Assets\Scripts\Cannon\CannonPicker.cs" />
+     <Compile Include="Assets\Scripts\Cannon\CannonShoot.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyMove.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyPlace.cs" />
      <Compile Include="Assets\Scripts\Entities\Entity.cs" />
-     <Compile Include="Assets\Scripts\Items\Cannon\CannonMove.cs" />
-     <Compile Include="Assets\Scripts\Items\Cannon\CannonPicker.cs" />
-     <Compile Include="Assets\Scripts\Items\Cannon\CannonShoot.cs" />
-     <Compile Include="Assets\Scripts\Items\Coin.cs" />
-     <Compile Include="Assets\Scripts\Items\CoinDistribution.cs" />
-     <Compile Include="Assets\Scripts\Items\DropPickupMove.cs" />
-     <Compile Include="Assets\Scripts\Items\PickupMove.cs" />
-     <Compile Include="Assets\Scripts\Items\SimpleItem.cs" />
+     <Compile Include="Assets\Scripts\Items\Coins\Coin.cs" />
+     <Compile Include="Assets\Scripts\Items\Coins\CoinDistribution.cs" />
+     <Compile Include="Assets\Scripts\Items\Pickups\DropPickupMove.cs" />
+     <Compile Include="Assets\Scripts\Items\Pickups\PickupItem.cs" />
+     <Compile Include="Assets\Scripts\Items\Pickups\PickupMove.cs" />
      <Compile Include="Assets\Scripts\Managers\DropItemsManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GUIManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameEventManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\LevelCreator.cs" />
+     <Compile Include="Assets\Scripts\Managers\MissileManager.cs" />
      <Compile Include="Assets\Scripts\Managers\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlatformManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SkylineManager.cs" />
      <Compile Include="Assets\Scripts\Managers\StaticItemsManager.cs" />
      <Compile Include="Assets\Scripts\Missile\MissileMove.cs" />
      <Compile Include="Assets\Scripts\Platform\Platform.cs" />
+     <Compile Include="Assets\Scripts\Player\ForceField.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerColors.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerForceField.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerSize.cs" />
      <Compile Include="Assets\Scripts\TestsOrUnused\TestScript.cs" />
      <Compile Include="Assets\Scripts\Utils\EntityList.cs" />
      <Compile Include="Assets\Scripts\Utils\FPSCounter.cs" />
+     <Compile Include="Assets\Scripts\Utils\PickupList.cs" />
      <Compile Include="Assets\Scripts\Utils\Tetrahedron.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>

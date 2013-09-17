@@ -32,13 +32,12 @@ public class DropItemsManager : MonoBehaviour {
 		
 		if( probability > Random.value )
 		{
-			Debug.Log( "SPAWN!!" );
 			nextPosition = player.transform.localPosition;
 			nextPosition.x += 20;
 			nextPosition.y += 15;
 			
 			dropItem.position = nextPosition;
-			dropItem.GetComponent<SimpleItem>().Reset();
+			dropItem.GetComponent<PickupItem>().Reset();
 		}
 	}
 	

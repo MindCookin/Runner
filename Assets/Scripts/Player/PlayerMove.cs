@@ -6,6 +6,7 @@ public class PlayerMove : MonoBehaviour {
 	public float 	acceleration;
 	public Vector3 	jumpVelocity;
 	public float 	gameOverY;
+	public bool		autoMove;
 	
 	private Vector3 _startPosition;
 	private float 	_distanceTraveled;
@@ -29,44 +30,51 @@ public class PlayerMove : MonoBehaviour {
 		
 		// initialize GUI texts 
 		GUIManager.SetDistance(_distanceTraveled);
+		
+		if( autoMove ) {
+			collider.isTrigger = true;
+			rigidbody.isKinematic = true;	
+		}
 	}
 	
 	void Update () {
 		
-		//******************************* DEBUG ***************************
-		rigidbody.isKinematic = true;
-		transform.Translate( 0.1f, 0, 0 );
-		_distanceTraveled = transform.localPosition.x;
-		GUIManager.SetDistance( _distanceTraveled );
-		return;
-		//******************************* end DEBUG ***************************
 		
-		
-		if(  Input.GetButtonDown("Jump") )
+		if ( autoMove )
 		{
-			if( _touchingPlatform )
+			
+			transform.Translate( 0.1f, 0, 0 );
+			_distanceTraveled = transform.localPosition.x;
+			GUIManager.SetDistance( _distanceTraveled );
+			
+		} else {
+			
+			if(  Input.GetButtonDown("Jump") )
 			{
-				_onDoubleJump		= false;
-				_touchingPlatform 	= false; 
-				rigidbody.AddForce( jumpVelocity, ForceMode.VelocityChange );
+				if( _touchingPlatform )
+				{
+					_onDoubleJump		= false;
+					_touchingPlatform 	= false; 
+					rigidbody.AddForce( jumpVelocity, ForceMode.VelocityChange );
+				} 
+				else if ( !_onDoubleJump && rigidbody.GetRelativePointVelocity( Vector3.zero ).y > -1 )  // or is jumping ( "DoubleJump" )
+				{
+					_onDoubleJump		= true;
+					rigidbody.AddForce( jumpVelocity * 1.2f, ForceMode.VelocityChange );
+				}
 			} 
-			else if ( !_onDoubleJump && rigidbody.GetRelativePointVelocity( Vector3.zero ).y > -1 )  // or is jumping ( "DoubleJump" )
-			{
-				_onDoubleJump		= true;
-				rigidbody.AddForce( jumpVelocity * 1.2f, ForceMode.VelocityChange );
+			
+			// update _distanceTraveled
+			_distanceTraveled = transform.localPosition.x;
+			
+			// trigger GameOver when falling
+			if( transform.localPosition.y < gameOverY ){
+				GameEventManager.TriggerGameOver();
 			}
-		} 
-		
-		// update _distanceTraveled
-		_distanceTraveled = transform.localPosition.x;
-		
-		// trigger GameOver when falling
-		if( transform.localPosition.y < gameOverY ){
-			GameEventManager.TriggerGameOver();
+			
+			// update GUI texts
+			GUIManager.SetDistance( _distanceTraveled );
 		}
-		
-		// update GUI texts
-		GUIManager.SetDistance( _distanceTraveled );
 	}
 	
 	void FixedUpdate () {

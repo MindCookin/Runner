@@ -27,6 +27,7 @@ public class PlatformManager : MonoBehaviour {
 		{
 			Transform queuedObject = (Transform) Instantiate( platform );
 			queuedObject.parent = transform;
+			queuedObject.GetComponent<Platform>().enemyPercent = enemyProbability;
 			platformQueue.Enqueue( queuedObject );
 		}
 		

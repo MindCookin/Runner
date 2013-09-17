@@ -88,7 +88,7 @@ public class StaticItemsManager : MonoBehaviour
 		Vector3 itemPosition = ( item.tag == "Cannon" ) ? cannonPosition : pickupPosition;
 		itemPosition.x = lastItemPosition.x + Random.Range( 20, 30 );
 		
-		item.GetComponent<SimpleItem>().Reset();
+		item.GetComponent<PickupItem>().Reset();
 		item.position = itemPosition;
 		
 		lastItemPosition.x = itemPosition.x;
