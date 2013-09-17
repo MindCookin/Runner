@@ -20,6 +20,7 @@ public class PlayerColors : MonoBehaviour {
 		
 		renderer.material.color = color;
 		
+		CancelInvoke("BackToInitialColor");
 		Invoke("BackToInitialColor", duration );
 	}
 	

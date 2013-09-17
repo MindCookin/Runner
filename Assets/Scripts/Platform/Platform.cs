@@ -3,15 +3,28 @@ using System.Collections;
 
 public class Platform : Entity
 {
-	public Transform enemyPrefab;
+	public Transform enemySliderPrefab, enemyBouncerPrefab;
 	public Vector3 minSize, maxSize, minGap, maxGap;
 	public float minY, maxY, enemyPercent;
 	
 	public Material[] materials;
 	public PhysicMaterial[] physicMaterials;
 	
-	private EnemyPlace enemyPlace;
-	private Transform enemy;
+	private Transform[] enemies;
+	
+	void Awake() {
+		
+		Transform slider 	= (Transform)Instantiate(enemySliderPrefab);
+		Transform bouncer 	= (Transform)Instantiate(enemyBouncerPrefab);
+		
+		slider.transform.parent = transform.parent;
+		bouncer.transform.parent = transform.parent;
+		
+		slider.gameObject.SetActive( false );
+		bouncer.gameObject.SetActive( false );
+		
+		enemies = new Transform[2] { slider, bouncer };
+	}
 	
 	public override void Place (Vector3 nextPosition)
 	{
@@ -49,17 +62,15 @@ public class Platform : Entity
 			mNextPosition.y = maxY - maxGap.y;
 		
 		if( Random.value < enemyPercent )
-		{
-			if( enemyPlace == null )
-				CreateEnemy();
-			
-			enemyPlace.Place( transform );
-		}
+			AddEnemy();
 	}
 	
-	private void CreateEnemy(){
-		enemy = (Transform)Instantiate(enemyPrefab);
-		enemyPlace = enemy.GetComponent<EnemyPlace>();
-		enemy.parent = transform.parent;
+	private void AddEnemy(){
+	
+		for ( int i = 0; i < enemies.Length; i++ )
+			enemies[i].gameObject.SetActive( false );
+			
+		Transform enemy = enemies[ Random.Range( 0, enemies.Length ) ];
+		enemy.GetComponent<EnemyPlace>().Place( transform );
 	}
 }

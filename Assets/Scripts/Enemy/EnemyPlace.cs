@@ -8,7 +8,6 @@ public class EnemyPlace : MonoBehaviour {
 	public void Place( Transform platform ){
 		
 		rigidbody.Sleep();
-		rigidbody.isKinematic = true;
 		
 		initialPosition = platform.localPosition;
 		initialPosition.y += platform.localScale.y;
@@ -17,7 +16,10 @@ public class EnemyPlace : MonoBehaviour {
 		transform.rotation = Quaternion.identity;
 		transform.position = initialPosition;
 		
-		GetComponent<EnemyMove>().Setup( platform );
+		if( GetComponent<EnemySliderMove>() )
+			GetComponent<EnemySliderMove>().Setup( platform );
+		else 
+			GetComponent<EnemyBouncerMove>().Setup( platform );
 		
 		gameObject.SetActive(true);
 	}

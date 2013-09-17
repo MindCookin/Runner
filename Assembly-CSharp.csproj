@@ -50,8 +50,9 @@
      <Compile Include="Assets\Scripts\Cannon\CannonMove.cs" />
      <Compile Include="Assets\Scripts\Cannon\CannonPicker.cs" />
      <Compile Include="Assets\Scripts\Cannon\CannonShoot.cs" />
-     <Compile Include="Assets\Scripts\Enemy\EnemyMove.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemyBouncerMove.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyPlace.cs" />
+     <Compile Include="Assets\Scripts\Enemy\EnemySliderMove.cs" />
      <Compile Include="Assets\Scripts\Entities\Entity.cs" />
      <Compile Include="Assets\Scripts\Items\Coins\Coin.cs" />
      <Compile Include="Assets\Scripts\Items\Coins\CoinDistribution.cs" />
@@ -70,8 +71,9 @@
      <Compile Include="Assets\Scripts\Platform\Platform.cs" />
      <Compile Include="Assets\Scripts\Player\ForceField.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerColors.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerExplosion.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerForceField.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerInventory.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerHit.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerSize.cs" />

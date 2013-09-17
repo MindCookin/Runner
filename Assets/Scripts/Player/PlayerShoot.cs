@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerShoot : MonoBehaviour {
 
-	public Transform quad, testTarget;
+	public Transform quad, testTarget, bulletContainer;
 	public int quantity, duration;
 	public float delay;
 	
@@ -17,6 +17,7 @@ public class PlayerShoot : MonoBehaviour {
 		
 		for ( int i = 0; i < quantity; i++ ) {
 			Transform q = (Transform) Instantiate( quad );	
+			q.parent = bulletContainer;
 			q.gameObject.SetActive(false);
 			queue.Enqueue( q );
 		}

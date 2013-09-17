@@ -25,7 +25,7 @@ public class MissileManager : MonoBehaviour {
 		for ( int i = 0; i < quantity; i++ )
 		{
 			Transform queuedObject = (Transform) Instantiate( missile );
-//			queuedObject.parent = transform;
+			queuedObject.parent = transform;
 			queuedObject.gameObject.SetActive(false);
 			initialRotation = queuedObject.rotation;
 			missileQueue.Enqueue( queuedObject );

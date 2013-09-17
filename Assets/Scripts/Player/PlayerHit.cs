@@ -1,22 +1,22 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerHit : MonoBehaviour
 {
-	public Vector3 	boostVelocity;
-	
 	private PlayerSize playerSize;
 	private PlayerShoot playerShoot;
 	private PlayerForceField playerForceField;
 	private PlayerColors playerColors;
+	private PlayerExplosion playerExplosion;
 	
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
 		playerSize 			= GetComponent<PlayerSize>();
 		playerShoot			= GetComponent<PlayerShoot>();
 		playerForceField	= GetComponent<PlayerForceField>();
 		playerColors		= GetComponent<PlayerColors>();
+		playerExplosion		= GetComponent<PlayerExplosion>();
 		
 		// listen to game events
 		GameEventManager.GameStart += GameStart;
@@ -40,6 +40,11 @@ public class PlayerInventory : MonoBehaviour
 			
 				string pickType = col.renderer.material.name.Split('_')[1];
 				Picked( pickType );	
+			break;
+			case "Missile":
+				playerExplosion.Explode();
+			break;
+			case "Enemy":
 			
 			break;
 		} 

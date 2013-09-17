@@ -7,14 +7,16 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
+                <Node name="Camera" expanded="True" />
+                <Node name="Enemy" expanded="True" />
                 <Node name="Items" expanded="True">
                   <Node name="Pickups" expanded="True" />
                 </Node>
                 <Node name="Managers" expanded="True" />
-                <Node name="Platform" expanded="True" />
-                <Node name="Player" expanded="True">
-                  <Node name="PlayerMove.cs" selected="True" />
+                <Node name="Platform" expanded="True">
+                  <Node name="Platform.cs" selected="True" />
                 </Node>
+                <Node name="Player" expanded="True" />
                 <Node name="Utils" expanded="True" />
               </Node>
             </Node>

@@ -18,6 +18,7 @@ public class DropItemsManager : MonoBehaviour {
 		player 		= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
 		
 		dropItem = (Transform) Instantiate( dropItem );
+		dropItem.transform.parent = transform;
 		
 		enabled = false;
 	}
