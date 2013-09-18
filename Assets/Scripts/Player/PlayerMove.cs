@@ -13,10 +13,14 @@ public class PlayerMove : MonoBehaviour {
 	private bool 	_touchingPlatform, _onDoubleJump;
 		
 	private Vector3 constantMove;
+	private PlayerColors playerColors;
 	
 	void Start() {
 	
+		playerColors = GetComponent<PlayerColors>();
+		
 		// listen to game events
+		GameEventManager.GameInit += GameInit;
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
 		
@@ -89,33 +93,42 @@ public class PlayerMove : MonoBehaviour {
 
 	void OnCollisionEnter ( Collision collision ) {
 		
-		if( collision.gameObject.tag == "Platform" )	// check platform collision
+		GameObject col = collision.gameObject;
+		
+		if( col.tag == "Platform" || col.tag == "Enemy" )	// check platform collision
 		{
+		//	if( col.tag == "Platform" )
+		//		SetPlayerColor( col.renderer.material.name );
+			
 			_touchingPlatform = true;
 		}
 	}
 
 	void OnCollisionExit ( Collision collision ) {
 		
-		if( collision.gameObject.tag == "Platform" )	// check platform collision
+		if( collision.gameObject.tag == "Platform" || collision.gameObject.tag == "Enemy" )	// check platform collision
 			_touchingPlatform = false; 
+	}
+	
+	void GameInit() {
+		
+		rigidbody.isKinematic 	= true;
+		rigidbody.useGravity = true;
+		rigidbody.Sleep();
+		
+		_distanceTraveled = 0f;
+		
+		transform.localPosition = _startPosition;
+		transform.rotation		= Quaternion.identity;
+		
+		renderer.enabled 		= true;
 	}
 	
 	void GameStart() {
 		
-		rigidbody.useGravity = true;
 		rigidbody.WakeUp();
-		renderer.enabled = true;
-		
-		// reset distance 
-		_distanceTraveled = 0f;
-		
-		// reset position
-		transform.localPosition = _startPosition;
-		
-		// show and enable movement
-		renderer.enabled = true;
 		rigidbody.isKinematic = false;
+		
 		enabled = true;
 	}
 	
@@ -126,6 +139,23 @@ public class PlayerMove : MonoBehaviour {
 		rigidbody.isKinematic = true;
 		enabled = false;	
 	}
+	/*
+	void SetPlayerColor( string materialName ){
+		
+		materialName = materialName.Split('_')[1];
+		Color targetColor;
+		
+		switch( materialName )
+		{
+			case "Red" 		: targetColor = PlayerColors.RED; 	break; 
+			case "Blue" 	: targetColor = PlayerColors.BLUE; 	break;
+			case "Green" 	: targetColor = PlayerColors.GREEN; break;
+			case "Yellow" 	: targetColor = PlayerColors.YELLOW;break;
+			default			: targetColor = PlayerColors.BLUE;  break;
+		}
+		
+		playerColors.ChangeColor( targetColor );
+	}*/
 	
 	public float DistanceTraveled{ get{ return _distanceTraveled; } }
 }

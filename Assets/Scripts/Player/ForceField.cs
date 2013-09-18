@@ -10,17 +10,19 @@ public class ForceField : MonoBehaviour {
 	private Vector3 targetSize;
 	private Light forceFieldLight;
 	
+	public bool isOn { get { return renderer.enabled; } }
+	
 	// Use this for initialization
 	void Start () {
 	
 		forceFieldLight = gameObject.GetComponentInChildren<Light>();
 		forceFieldLight.intensity = 0;
 		
-		targetIntensity = 0;
-		targetSize		= Vector3.zero;
+		targetIntensity 		= 0;
+		targetSize				= Vector3.zero;
 		
-		renderer.enabled = true;
-		transform.localScale = Vector3.zero;
+		renderer.enabled 		= false;
+		transform.localScale 	= Vector3.zero;
 	}
 	
 	public void Show()

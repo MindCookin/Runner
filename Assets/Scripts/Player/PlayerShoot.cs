@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerShoot : MonoBehaviour {
 
 	public Transform quad, testTarget, bulletContainer;
-	public int quantity, duration;
+	public int quantity, duration, shootingRange;
 	public float delay;
 	
 	private Queue<Transform> queue;
@@ -24,27 +24,25 @@ public class PlayerShoot : MonoBehaviour {
 	}
 	
 	public void StartShooting() {
-		
-	}
-	
-	void Shoot( Transform trgt ) {
-		
-		target= trgt;
-		
 		InvokeRepeating( "ShootQuad", 0, delay );
 		Invoke( "StopShooting", duration );
 	}
 	
 	void ShootQuad()
 	{
-		Vector3 direction = target.position - transform.position;
-		direction.Normalize();
+		SetTarget();
 		
-		Transform q = queue.Dequeue();
-		q.position = transform.position;
-		q.GetComponent<BulletMove>().direction = direction;
-		q.gameObject.SetActive( true );
-		queue.Enqueue( q );
+		if( target )
+		{
+			Vector3 direction = target.position - transform.position;
+			direction.Normalize();
+			
+			Transform q = queue.Dequeue();
+			q.position = transform.position;
+			q.GetComponent<BulletMove>().direction = direction;
+			q.gameObject.SetActive( true );
+			queue.Enqueue( q );
+		}
 	}
 	
 	void StopShooting() {
@@ -56,6 +54,20 @@ public class PlayerShoot : MonoBehaviour {
 		for ( int i = 0; i < quantity; i++ ){
 			array[i].gameObject.SetActive(false);
 			array[i].position = Vector3.zero;
+		}
+	}
+	
+	void SetTarget() {
+		
+		Collider[] hitColliders = Physics.OverlapSphere( transform.position, shootingRange );
+		 
+		target 		= null;
+		int index 	= 0;
+		
+		while( index < hitColliders.Length && target == null )
+		{
+			target = ( hitColliders[ index ].tag == "Enemy" ) ? hitColliders[ index ].transform : null;
+			index++;
 		}
 	}
 }

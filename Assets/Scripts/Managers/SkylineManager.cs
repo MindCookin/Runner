@@ -27,7 +27,8 @@ public class SkylineManager : MonoBehaviour {
 		// listen to Events
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
-		
+		GameEventManager.GameInit += GameInit;
+
 		// disable for performance
 		enabled = false;
 		
@@ -76,18 +77,28 @@ public class SkylineManager : MonoBehaviour {
 	}
 	
 	void GameStart() {	
-		// set starting position
+		/*
 		nextPosition = startPosition;
 		
-		// locate objects
 		for (int i = 0; i < numberOfObjects; i++) 
 			objectQueue.ToArray()[i].renderer.enabled = true;
 		
 		for (int i = 0; i < numberOfObjects; i++) 
 			Recycle();
-		
+		*/
 		// enable to play
 		enabled = true;
+	}
+	
+	void GameInit() {
+		
+		nextPosition = startPosition;
+		
+		for (int i = 0; i < numberOfObjects; i++) 
+			objectQueue.ToArray()[i].renderer.enabled = true;
+		
+		for (int i = 0; i < numberOfObjects; i++) 
+			Recycle();
 	}
 	
 	

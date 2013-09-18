@@ -8,10 +8,13 @@ public class PlayerHit : MonoBehaviour
 	private PlayerForceField playerForceField;
 	private PlayerColors playerColors;
 	private PlayerExplosion playerExplosion;
+	private ForceField forceField;
 	
 	// Use this for initialization
 	void Awake()
 	{
+		forceField = gameObject.GetComponentInChildren<ForceField>();
+		
 		playerSize 			= GetComponent<PlayerSize>();
 		playerShoot			= GetComponent<PlayerShoot>();
 		playerForceField	= GetComponent<PlayerForceField>();
@@ -42,7 +45,12 @@ public class PlayerHit : MonoBehaviour
 				Picked( pickType );	
 			break;
 			case "Missile":
-				playerExplosion.Explode();
+			
+				col.gameObject.SetActive(false);
+			
+				if( !forceField.isOn )
+					playerExplosion.Explode();
+				
 			break;
 			case "Enemy":
 			
@@ -51,7 +59,6 @@ public class PlayerHit : MonoBehaviour
 	}
 	
 	void GameStart() {
-		
 	}
 	
 	void GameOver() {

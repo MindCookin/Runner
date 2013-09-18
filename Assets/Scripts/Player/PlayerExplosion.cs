@@ -15,6 +15,7 @@ public class PlayerExplosion : MonoBehaviour {
 	public void Explode() {
 		
 		particles.Play();
+		renderer.enabled = false;
 		
 		Invoke("TriggerGameOver", timeToGameOver );
 	}

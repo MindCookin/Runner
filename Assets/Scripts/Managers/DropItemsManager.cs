@@ -4,16 +4,20 @@ using System.Collections;
 public class DropItemsManager : MonoBehaviour {
 	
 	public Vector3 		recycleOffset;
-	public float 		probability;
 	public Transform 	dropItem;
 	
 	private Vector3 nextPosition;
 	private PlayerMove player;
 	
-	void Start () {
+	LevelStateManager level;
 	
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.GameOver += GameOver;	
+	void Start () {
+		
+		level = LevelStateManager.instance;
+	
+		GameEventManager.GameInit 	+= GameInit;
+		GameEventManager.GameStart 	+= GameStart;
+		GameEventManager.GameOver 	+= GameOver;	
 		
 		player 		= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
 		
@@ -31,7 +35,7 @@ public class DropItemsManager : MonoBehaviour {
 	
 	void Recycle() {
 		
-		if( probability > Random.value )
+		if( Random.value < level.DropPickerPercent )
 		{
 			nextPosition = player.transform.localPosition;
 			nextPosition.x += 20;
@@ -45,7 +49,10 @@ public class DropItemsManager : MonoBehaviour {
 	void GameStart () {
 		
 		enabled = true;
-		
+	}
+	
+	void GameInit () {
+	
 		Recycle();
 	}
 	

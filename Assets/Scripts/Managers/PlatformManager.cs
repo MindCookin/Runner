@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlatformManager : MonoBehaviour {
 	
-	public float enemyProbability;
+//	public float enemyProbability, enemyMinSize, enemyMaxSize;
 	public int queuedQuantity;
 	public int recycleOffset;
 	
@@ -14,11 +14,13 @@ public class PlatformManager : MonoBehaviour {
 	private Queue<Transform> platformQueue;
 	
 	private PlayerMove player;
+	private Platform platformScript;
 	
 	void Awake() {
 	
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.GameOver += GameOver;	
+		GameEventManager.GameInit 	+= GameInit;
+		GameEventManager.GameStart 	+= GameStart;
+		GameEventManager.GameOver 	+= GameOver;	
 	
 		platformQueue	= new Queue<Transform>( queuedQuantity );
 		player 	= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
@@ -27,7 +29,6 @@ public class PlatformManager : MonoBehaviour {
 		{
 			Transform queuedObject = (Transform) Instantiate( platform );
 			queuedObject.parent = transform;
-			queuedObject.GetComponent<Platform>().enemyPercent = enemyProbability;
 			platformQueue.Enqueue( queuedObject );
 		}
 		
@@ -47,21 +48,25 @@ public class PlatformManager : MonoBehaviour {
 		
 		Transform targetObject = platformQueue.Dequeue();
 		
-		Entity entity = targetObject.GetComponent<Entity>();
-		entity.Place( nextPosition );
-		nextPosition = entity.NextPosition;
-		
+		platformScript = targetObject.GetComponent<Platform>();
+			
+		platformScript.Place( nextPosition );
+		nextPosition = platformScript.NextPosition;
+			
 		platformQueue.Enqueue( targetObject );
 	}
 	
 	void GameStart () {
 		
+		enabled = true;
+	}
+	
+	void GameInit () {
+		
 		nextPosition = Vector3.zero;
 		
 		for( int i = 0; i < queuedQuantity; i++ )
 			Recycle();
-		
-		enabled = true;
 	}
 	
 	void GameOver () {

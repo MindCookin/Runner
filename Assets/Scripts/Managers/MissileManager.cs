@@ -6,7 +6,6 @@ public class MissileManager : MonoBehaviour {
 	
 	public Transform missile;
 	public int variableY, recycleOffset, quantity, separationBetweenMissiles;
-	public float probability;
 	public Vector3 startingPos;
 	
 	private Quaternion initialRotation;
@@ -14,8 +13,12 @@ public class MissileManager : MonoBehaviour {
 	private PlayerMove player;
 	private int lastMissileX;
 	
+	LevelStateManager level;
+	
 	void Awake() {
 	
+		level = LevelStateManager.instance;
+		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;	
 		
@@ -43,13 +46,14 @@ public class MissileManager : MonoBehaviour {
 	
 		if( player.DistanceTraveled > lastMissileX
 			&& Mathf.FloorToInt(player.DistanceTraveled) % separationBetweenMissiles == 0 
-			&& Random.value < probability )
+			&& Random.value < level.MissilePercent )
 			Add();
 	}
 	
 	void Remove() {
 	
 		Transform targetObject = missileQueue.Dequeue();
+		targetObject.rigidbody.Sleep();
 		targetObject.gameObject.SetActive(false);	
 		missileQueue.Enqueue( targetObject );
 	}

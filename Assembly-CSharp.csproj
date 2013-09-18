@@ -53,7 +53,6 @@
      <Compile Include="Assets\Scripts\Enemy\EnemyBouncerMove.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemyPlace.cs" />
      <Compile Include="Assets\Scripts\Enemy\EnemySliderMove.cs" />
-     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
      <Compile Include="Assets\Scripts\Items\Coins\Coin.cs" />
      <Compile Include="Assets\Scripts\Items\Coins\CoinDistribution.cs" />
      <Compile Include="Assets\Scripts\Items\Pickups\DropPickupMove.cs" />
@@ -62,8 +61,8 @@
      <Compile Include="Assets\Scripts\Managers\DropItemsManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GUIManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameEventManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\LevelStateManager.cs" />
      <Compile Include="Assets\Scripts\Managers\MissileManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Managers\PlatformManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SkylineManager.cs" />
      <Compile Include="Assets\Scripts\Managers\StaticItemsManager.cs" />
@@ -82,6 +81,7 @@
      <Compile Include="Assets\Scripts\Utils\FPSCounter.cs" />
      <Compile Include="Assets\Scripts\Utils\PickupList.cs" />
      <Compile Include="Assets\Scripts\Utils\Tetrahedron.cs" />
+     <Compile Include="Assets\TitleText.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,15 +6,12 @@ public class StaticItemsManager : MonoBehaviour
 {
 	public Vector3 startingPosition;
 	public int recycleOffset;
-	public Transform coin, cannon, pickup;
-	public float cannonPercent, pickupPercent;
-	public Vector3 cannonPosition, pickupPosition;
+	public Transform coin;
 	
-	private Vector3 nextPosition, lastItemPosition;
+	private Vector3 nextPosition;
 	private Queue<Transform> coinQueue;
 	private int queuedQuantity = 10;
-	private Transform cannonInstance, pickupInstance;
-		
+	
 	private PlayerMove player;
 	
 	void Awake() {
@@ -23,13 +20,8 @@ public class StaticItemsManager : MonoBehaviour
 	
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;	
+		GameEventManager.GameInit += GameInit;	
 	
-		cannonInstance = (Transform)Instantiate(cannon);
-		pickupInstance = (Transform)Instantiate(pickup);
-		
-		cannonInstance.parent = transform;
-		pickupInstance.parent = transform;
-		
 		player 		= GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
 		
 		coinQueue	= new Queue<Transform>( queuedQuantity );
@@ -46,60 +38,25 @@ public class StaticItemsManager : MonoBehaviour
 	void Update (){
 		
 		// check if objectPosition is higher than our offset (i.e. is off screen);
-		if ( lastItemPosition.x + recycleOffset < player.DistanceTraveled )
-		{
-			nextPosition.x = player.DistanceTraveled + 30;
+		if ( nextPosition.x + recycleOffset < player.DistanceTraveled )
 			Recycle();
-		}
 	}
 	
 	void Recycle() {
 		
-		lastItemPosition = CoinDistribution.RandomDistribution( coinQueue, nextPosition );
-		
-		PlaceInBetweenItems();
-	}
-	
-	void PlaceInBetweenItems() {
-		
-		bool placeCannon = Random.value < cannonPercent;
-		bool placePickup = Random.value < pickupPercent;
-		
-		if( placeCannon && placePickup )
-		{
-			if( Random.value < .5f )
-			{
-				RecycleItem( cannonInstance );
-				RecycleItem( pickupInstance );
-			} else {
-				RecycleItem( pickupInstance );
-				RecycleItem( cannonInstance );
-			}
+		nextPosition.x += 30;
 			
-		} else if ( placeCannon ) {
-				RecycleItem( cannonInstance );
-		} else if ( placePickup ) {
-				RecycleItem( pickupInstance );
-		}	
-	}
-	
-	void RecycleItem( Transform item ) {
-		
-		Vector3 itemPosition = ( item.tag == "Cannon" ) ? cannonPosition : pickupPosition;
-		itemPosition.x = lastItemPosition.x + Random.Range( 20, 30 );
-		
-		item.GetComponent<PickupItem>().Reset();
-		item.position = itemPosition;
-		
-		lastItemPosition.x = itemPosition.x;
+		nextPosition = CoinDistribution.RandomDistribution( coinQueue, nextPosition );
 	}
 	
 	void GameStart () {
 		
-		nextPosition 		= startingPosition;
-		lastItemPosition	= Vector3.zero;
-		
 		enabled = true;
+	}
+	
+	void GameInit() {
+		
+		nextPosition 		= startingPosition;
 		
 		Recycle();
 	}
