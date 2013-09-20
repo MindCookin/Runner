@@ -163,7 +163,7 @@ public class PlayerMove : MonoBehaviour {
 		rigidbody.WakeUp();
 		rigidbody.isKinematic = false;
 		
-		rigidbody.AddForce( jumpVelocity/2, ForceMode.VelocityChange );
+	//	rigidbody.AddForce( jumpVelocity/2, ForceMode.VelocityChange );
 		
 		enabled = true;
 	}

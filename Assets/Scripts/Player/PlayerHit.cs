@@ -50,7 +50,9 @@ public class PlayerHit : MonoBehaviour
 				col.gameObject.SetActive(false);
 			
 				if( !forceField.isOn )
+				{
 					playerExplosion.Explode();
+				}
 				else
 				{
 					playerShoot.StopShooting();

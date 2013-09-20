@@ -10,7 +10,7 @@ public class ForceField : MonoBehaviour {
 	private Vector3 targetSize;
 	private Light forceFieldLight;
 	
-	public bool isOn { get { return targetIntensity == 0; } }
+	public bool isOn { get { return renderer.enabled; } }
 	
 	// Use this for initialization
 	void Start () {

@@ -24,7 +24,7 @@ public class LevelStateManager {
 	float PlatformMinGapXIncrement	= 0f; 
 	float PlatformMaxGapXIncrement	= .5f;
 	float PlatformMinGapYIncrement	= .05f;
-	float PlatformMaxGapYIncrement	= .05f;
+	float PlatformMaxGapYIncrement	= .2f;
 	float PlatformSizeIncrement		= .05f;
 	float DropPickerIncrement		= .05f;
 	
@@ -82,12 +82,12 @@ public class LevelStateManager {
 		lastDistanceUpdated = 1;
 		_enemyPercent 		= 0; 
 		_enemyMinSize 		= 1f; 
-		_enemyMaxSize 		= 1f;
+		_enemyMaxSize 		= 1.5f;
 		_missilePercent 	= 0;
-		_platformMinXGap 	= 0; 
-		_platformMaxXGap 	= 0; 
+		_platformMinXGap 	= 1; 
+		_platformMaxXGap 	= 1; 
 		_platformMinYGap 	= 0; 
-		_platformMaxYGap	= 0; 
+		_platformMaxYGap	= 0.5f; 
 		_platformMinSize 	= 10;
 		_platformMaxSize 	= 15;
 		_dropPickerPercent 	= 0;
@@ -126,8 +126,6 @@ public class LevelStateManager {
 	}
 	
 	void GameOver() {
-		
-		Debug.Log("Initialize Variables");
 		
 		timer.Stop();
 		
