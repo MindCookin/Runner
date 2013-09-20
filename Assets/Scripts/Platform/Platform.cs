@@ -5,7 +5,7 @@ public class Platform : MonoBehaviour
 {
 	protected Vector3 mNextPosition = Vector3.zero;
 	
-	public Transform enemySliderPrefab, enemyBouncerPrefab;
+	public Transform enemySliderPrefab, enemyBouncerPrefab, capsulePrefab;
 //	public Vector3 minSize, maxSize, minGap, maxGap;
 	public float minY, maxY;
 	
@@ -13,35 +13,24 @@ public class Platform : MonoBehaviour
 	public PhysicMaterial[] physicMaterials;
 	
 	private Transform[] enemies;
-	
-	Vector3 size;
-	
-	LevelStateManager level;
+	Transform capsule;
 	
 	void Awake() {
 		
-		size = Vector3.one;
-		
-		level = LevelStateManager.instance;
-		
-		// listen to game events
-		GameEventManager.GameStart += GameStart;
-		GameEventManager.GameInit += GameInit;
-		GameEventManager.GameOver += GameOver;
-		
-		renderer.enabled	= false;
-		enabled 			= false;
-		
 		GameObject enemyContainer = GameObject.Find("EnemyContainer");
+		GameObject itemsContainer = GameObject.Find("DropItemsContainer");
 		
 		Transform slider 	= (Transform)Instantiate(enemySliderPrefab);
 		Transform bouncer 	= (Transform)Instantiate(enemyBouncerPrefab);
+		capsule				= (Transform)Instantiate(capsulePrefab);
 		
 		slider.transform.parent  = enemyContainer.transform;
 		bouncer.transform.parent = enemyContainer.transform;
+		capsule.transform.parent = itemsContainer.transform;
 		
 		slider.gameObject.SetActive( false );
 		bouncer.gameObject.SetActive( false );
+		capsule.gameObject.SetActive( false );
 		
 		enemies = new Transform[2] { slider, bouncer };
 	}
@@ -50,39 +39,38 @@ public class Platform : MonoBehaviour
 	{
 		// setup platform size
 		Vector3 scale = new Vector3(
-			Random.Range(size.x, 50),
-			size.y,
-			size.z);
+			Random.Range(LevelStateManager.GetInstance().PlatformMinSize, LevelStateManager.GetInstance().PlatformMaxSize ),
+			1,
+			1);
+		
+		// generate a gap and add it to nextPosition
+		Vector3 gap = new Vector3(
+			Random.Range(LevelStateManager.GetInstance().PlatformMinXGap, LevelStateManager.GetInstance().PlatformMaxXGap ),
+			Random.Range(LevelStateManager.GetInstance().PlatformMinYGap, LevelStateManager.GetInstance().PlatformMaxYGap),
+			0 );
 		
 		// setup platform position
 		Vector3 position = nextPosition;
-		position.x += scale.x * 0.5f;
-		position.y += scale.y * 0.5f;
+		position.x += gap.x + scale.x/2;
+		position.y = gap.y; 
 		
 		// update platform size and position
 		transform.localScale = scale;
 		transform.localPosition = position;
-		mNextPosition.x = nextPosition.x + scale.x;
+		
+		mNextPosition = position;
+		mNextPosition.x += scale.x/2;
 		
 		// setup material
 		int materialIndex = Random.Range(0, materials.Length);
 		renderer.material = materials[materialIndex];
 		collider.material = physicMaterials[materialIndex];
 		
-		// generate a gap and add it to nextPosition
-		mNextPosition += new Vector3(
-			Random.Range(level.PlatformMinXGap, level.PlatformMaxXGap ),
-			Random.Range(level.PlatformMinYGap, level.PlatformMaxYGap),
-			0 );
-		
-		// adjust nextPosition y for minY and maxY
-		if(mNextPosition.y < minY)
-			mNextPosition.y = minY + level.PlatformMaxXGap;
-		else if(mNextPosition.y > maxY)
-			mNextPosition.y = maxY - level.PlatformMaxYGap;
-		
-		if( Random.value < level.EnemyPercent )
+		if( Random.value < LevelStateManager.GetInstance().EnemyPercent )
 			AddEnemy();
+		
+		if( Random.value < LevelStateManager.GetInstance().DropPickerPercent )
+			AddCapsule();
 	}
 	
 	private void AddEnemy(){
@@ -94,21 +82,10 @@ public class Platform : MonoBehaviour
 		enemy.GetComponent<EnemyPlace>().Place( transform );
 	}
 	
-	void GameStart() {
-		// enable to play
-		renderer.enabled	= true;
-		enabled 			= true;
-	}
-	
-	void GameOver() {
-		// disable on gameover
-		renderer.enabled	= false;
-		enabled 			= false;
-	}
-	
-	void GameInit() {
+	private void AddCapsule() {
 		
-		renderer.enabled	= true;
+		capsule.GetComponent<PickupItem>().Reset();
+		capsule.GetComponent<PlatformPickupPlace>().Place( transform );
 	}
 	
 	public Vector3 NextPosition{ get { return mNextPosition; } }

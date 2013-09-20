@@ -44,6 +44,15 @@ public class SkylineManager : MonoBehaviour {
 			objectQueue.ToArray()[i].renderer.enabled = false;
 		}
 		
+		
+		nextPosition = startPosition;
+		
+		for (int i = 0; i < numberOfObjects; i++) 
+			objectQueue.ToArray()[i].renderer.enabled = true;
+		
+		for (int i = 0; i < numberOfObjects; i++) 
+			Recycle();
+		
 	}
 	
 	void Update (){
@@ -77,16 +86,7 @@ public class SkylineManager : MonoBehaviour {
 	}
 	
 	void GameStart() {	
-		/*
-		nextPosition = startPosition;
 		
-		for (int i = 0; i < numberOfObjects; i++) 
-			objectQueue.ToArray()[i].renderer.enabled = true;
-		
-		for (int i = 0; i < numberOfObjects; i++) 
-			Recycle();
-		*/
-		// enable to play
 		enabled = true;
 	}
 	
@@ -99,6 +99,7 @@ public class SkylineManager : MonoBehaviour {
 		
 		for (int i = 0; i < numberOfObjects; i++) 
 			Recycle();
+			
 	}
 	
 	

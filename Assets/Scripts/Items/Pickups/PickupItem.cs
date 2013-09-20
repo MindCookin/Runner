@@ -10,7 +10,7 @@ public class PickupItem : MonoBehaviour
 		
 		GameEventManager.GameOver += GameOver;
 		
-		gameObject.SetActive(false);
+		enabled = false;
 	}
 
 	public void Reset() {
@@ -18,12 +18,12 @@ public class PickupItem : MonoBehaviour
 		int index = Random.Range( 0, materials.Length );
 		renderer.material = materials[ index ];
 			
-		gameObject.SetActive(true);
+		enabled = true;
 	}
 
 	void GameOver () {
 	
-		gameObject.SetActive(true);
+		enabled = false;
 	}
 }
 

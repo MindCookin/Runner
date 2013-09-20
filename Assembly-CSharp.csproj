@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\PlayerPopup.cs" />
      <Compile Include="Assets\Scripts\Bullet\BulletMove.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\Cannon\CannonItem.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Scripts\Items\Pickups\DropPickupMove.cs" />
      <Compile Include="Assets\Scripts\Items\Pickups\PickupItem.cs" />
      <Compile Include="Assets\Scripts\Items\Pickups\PickupMove.cs" />
+     <Compile Include="Assets\Scripts\Items\Pickups\PlatformPickupPlace.cs" />
      <Compile Include="Assets\Scripts\Managers\DropItemsManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GUIManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameEventManager.cs" />

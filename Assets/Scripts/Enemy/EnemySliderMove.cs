@@ -18,9 +18,10 @@ public class EnemySliderMove : MonoBehaviour {
 		
 		if( platform != null )
 		{
-			if (transform.localPosition.x + transform.localScale.x/2 > platform.position.x + platform.localScale.x / 2 || 
-				transform.localPosition.x - transform.localScale.x/2 < platform.position.x - platform.localScale.x / 2 )
-				direction *= -1; 
+			if ( direction == 1 && transform.localPosition.x + transform.localScale.x/2 > platform.position.x + platform.localScale.x / 2 )
+				direction = -1;
+			if ( direction == -1 && transform.localPosition.x - transform.localScale.x/2 < platform.position.x - platform.localScale.x / 2 )
+				direction = 1; 
 			
 			transform.Translate( speed * direction, 0, 0 );
 		}

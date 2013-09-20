@@ -11,6 +11,9 @@ public class CameraMovement : MonoBehaviour {
 	
 	void Awake () {
 		
+		GameEventManager.GameOver 	+= GameOver;
+		GameEventManager.GameStart 	+= GameStart;
+		
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		
 		initialPosition = transform.position;
@@ -22,5 +25,16 @@ public class CameraMovement : MonoBehaviour {
 		transform.position = player.position + initialPosition;
 		transform.rotation = initialRotation;
 		transform.Rotate( player.position.y / inverseRotateSpeed, 0, 0 );
+	}
+	
+	void GameOver() {
+	/*	Vector3 targetPos = player.position;
+		targetPos.y = 2;
+		transform.position = targetPos + initialPosition;
+	*/	
+	}
+	
+	void GameStart() {
+		
 	}
 }

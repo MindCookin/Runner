@@ -28,8 +28,6 @@ public class EnemyBouncerMove : MonoBehaviour {
 	
 	void OnCollisionEnter ( Collision collision ) {
 		
-		Debug.Log(collision);
-		
 		if( collision.gameObject.tag == "Platform" )	// check platform collision
 			_touchingPlatform = true;
 	}

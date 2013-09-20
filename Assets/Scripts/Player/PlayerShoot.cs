@@ -10,9 +10,11 @@ public class PlayerShoot : MonoBehaviour {
 	
 	private Queue<Transform> queue;
 	private Transform target;
+	private PlayerColors colors;
 	
 	void Start(){
 		
+		colors= GetComponent<PlayerColors>();
 		queue = new Queue<Transform>( quantity );
 		
 		for ( int i = 0; i < quantity; i++ ) {
@@ -24,8 +26,11 @@ public class PlayerShoot : MonoBehaviour {
 	}
 	
 	public void StartShooting() {
+		
 		InvokeRepeating( "ShootQuad", 0, delay );
 		Invoke( "StopShooting", duration );
+		
+		colors.ChangeColor( PlayerColors.RED );
 	}
 	
 	void ShootQuad()
@@ -45,7 +50,7 @@ public class PlayerShoot : MonoBehaviour {
 		}
 	}
 	
-	void StopShooting() {
+	public void StopShooting() {
 		
 		CancelInvoke("ShootQuad");
 		
@@ -55,19 +60,27 @@ public class PlayerShoot : MonoBehaviour {
 			array[i].gameObject.SetActive(false);
 			array[i].position = Vector3.zero;
 		}
+		
+		colors.BackToInitialColor();
 	}
 	
 	void SetTarget() {
 		
 		Collider[] hitColliders = Physics.OverlapSphere( transform.position, shootingRange );
-		 
-		target 		= null;
-		int index 	= 0;
 		
-		while( index < hitColliders.Length && target == null )
+		string indexes = "";
+		for ( int i = 0; i < hitColliders.Length; i++ )
 		{
-			target = ( hitColliders[ index ].tag == "Enemy" ) ? hitColliders[ index ].transform : null;
-			index++;
+			if ( hitColliders[i].tag == "Enemy" )
+				indexes += "," + i.ToString();
+		}
+		
+		string[] enemies = indexes.Split(',');
+		
+		if ( enemies.Length > 1 )
+		{
+			int selected = int.Parse( enemies[ Random.Range( 1, enemies.Length ) ] );
+			target = hitColliders[ selected ].transform;
 		}
 	}
 }

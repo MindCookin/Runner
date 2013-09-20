@@ -9,6 +9,7 @@ public class PlatformManager : MonoBehaviour {
 	public int recycleOffset;
 	
 	public Transform platform;
+	public Transform blockingPlatform;
 
 	private Vector3 nextPosition = Vector3.zero;
 	private Queue<Transform> platformQueue;
@@ -32,6 +33,8 @@ public class PlatformManager : MonoBehaviour {
 			platformQueue.Enqueue( queuedObject );
 		}
 		
+		blockingPlatform.localScale = new Vector3( 1, 100, 1 );
+		
 		enabled = false;
 	}
 	
@@ -41,7 +44,10 @@ public class PlatformManager : MonoBehaviour {
 		
 		// check if objectPosition is higher than our offset (i.e. is off screen);
 		if (obj.localPosition.x + recycleOffset < player.DistanceTraveled )
+		{
 			Recycle();
+			RecycleBlockingPlatform();
+		}
 	}
 	
 	void Recycle() {
@@ -56,6 +62,16 @@ public class PlatformManager : MonoBehaviour {
 		platformQueue.Enqueue( targetObject );
 	}
 	
+	void RecycleBlockingPlatform() {
+		
+		if( !blockingPlatform.gameObject.activeSelf )
+			blockingPlatform.gameObject.SetActive( true );
+			
+		Transform lastPlatform = platformQueue.Peek();	
+		blockingPlatform.position = lastPlatform.position;
+		blockingPlatform.Translate( -lastPlatform.localScale.x / 2 - 0.5f, blockingPlatform.localScale.y/2 - 0.5f, 0 );
+	}
+	
 	void GameStart () {
 		
 		enabled = true;
@@ -67,9 +83,14 @@ public class PlatformManager : MonoBehaviour {
 		
 		for( int i = 0; i < queuedQuantity; i++ )
 			Recycle();
+		
+		RecycleBlockingPlatform();
+		
+		blockingPlatform.gameObject.SetActive( false );
 	}
 	
 	void GameOver () {
+		
 		enabled = false;
 	}
 }

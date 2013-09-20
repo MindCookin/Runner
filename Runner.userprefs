@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/GUIManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Platform/Platform.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/GUIManager.cs" Line="5" Column="85" />
+      <File FileName="Assets/Scripts/Platform/Platform.cs" Line="86" Column="43" />
+      <File FileName="Assets/Scripts/Items/Pickups/PickupItem.cs" Line="26" Column="18" />
+      <File FileName="Assets/Scripts/Items/Pickups/PlatformPickupPlace.cs" Line="8" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -10,8 +12,12 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Managers" expanded="True">
-                  <Node name="GUIManager.cs" selected="True" />
+                <Node name="Enemy" expanded="True" />
+                <Node name="Items" expanded="True">
+                  <Node name="Pickups" expanded="True" />
+                </Node>
+                <Node name="Platform" expanded="True">
+                  <Node name="Platform.cs" selected="True" />
                 </Node>
               </Node>
             </Node>

@@ -10,7 +10,7 @@ public class ForceField : MonoBehaviour {
 	private Vector3 targetSize;
 	private Light forceFieldLight;
 	
-	public bool isOn { get { return renderer.enabled; } }
+	public bool isOn { get { return targetIntensity == 0; } }
 	
 	// Use this for initialization
 	void Start () {
@@ -32,7 +32,7 @@ public class ForceField : MonoBehaviour {
 		targetSize 		= Vector3.one * size;
 		targetIntensity	= 0.68f;
 		
-		Invoke( "Hide", duration );
+//		Invoke( "Hide", duration );
 	}
 	
 	// Update is called once per frame
@@ -47,7 +47,7 @@ public class ForceField : MonoBehaviour {
 			renderer.enabled = false;
 	}
 	
-	void Hide() {
+	public void Hide() {
 		targetSize = Vector3.zero;
 		targetIntensity = 0;
 	}

@@ -5,23 +5,19 @@ public class EnemyPlace : MonoBehaviour {
 	
 	private Vector3 initialPosition; 
 	
-	LevelStateManager level;
-	
-	void Start() {
-		level = LevelStateManager.instance;
-	}
-	
 	public void Place( Transform platform ){
 		
 		rigidbody.Sleep();
 		
-		initialPosition = platform.localPosition;
-		initialPosition.y += platform.localScale.y;
-		initialPosition.x += Random.value * platform.localScale.x - platform.localScale.x/2;
-		
 		transform.rotation = Quaternion.identity;
+		
+		Vector3 targetScale = Vector3.one * Random.Range( LevelStateManager.GetInstance().EnemyMinSize, LevelStateManager.GetInstance().EnemyMaxSize );
+		targetScale.z = 1;
+		transform.localScale = targetScale;
+		
+		initialPosition = platform.localPosition;
+		initialPosition.y += transform.localScale.y;
 		transform.position = initialPosition;
-		transform.localScale = Vector3.one * Random.Range( level.EnemyMinSize, level.EnemyMinSize );
 		
 		if( GetComponent<EnemySliderMove>() )
 			GetComponent<EnemySliderMove>().Setup( platform );

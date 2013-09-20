@@ -13,12 +13,8 @@ public class MissileManager : MonoBehaviour {
 	private PlayerMove player;
 	private int lastMissileX;
 	
-	LevelStateManager level;
-	
 	void Awake() {
 	
-		level = LevelStateManager.instance;
-		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;	
 		
@@ -46,7 +42,7 @@ public class MissileManager : MonoBehaviour {
 	
 		if( player.DistanceTraveled > lastMissileX
 			&& Mathf.FloorToInt(player.DistanceTraveled) % separationBetweenMissiles == 0 
-			&& Random.value < level.MissilePercent )
+			&& Random.value < LevelStateManager.GetInstance().MissilePercent )
 			Add();
 	}
 	
@@ -84,5 +80,6 @@ public class MissileManager : MonoBehaviour {
 	
 	void GameOver () {
 		enabled = false;
+		Remove();
 	}
 }

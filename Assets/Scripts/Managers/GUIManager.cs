@@ -19,7 +19,6 @@ public class GUIManager : MonoBehaviour {
 		// disable by default
 		gameOverText.enabled = false;
 		
-		
 		GameEventManager.TriggerGameInit();
 	}
 	
@@ -75,12 +74,6 @@ public class GUIManager : MonoBehaviour {
 	
 	private void GameOver () {
 		
-		gameOverText.enabled = true;
-		
-		Invoke("TriggerInit", 2 );
-	}
-	
-	private void TriggerInit() {
-		GameEventManager.TriggerGameInit();	
+//		gameOverText.enabled = true;
 	}
 }

@@ -44,7 +44,7 @@ public class StaticItemsManager : MonoBehaviour
 	
 	void Recycle() {
 		
-		nextPosition.x += 30;
+		nextPosition.x += startingPosition.x;
 			
 		nextPosition = CoinDistribution.RandomDistribution( coinQueue, nextPosition );
 	}

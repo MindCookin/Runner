@@ -42,7 +42,8 @@ public class PlayerHit : MonoBehaviour
 				col.gameObject.SetActive(false);
 			
 				string pickType = col.renderer.material.name.Split('_')[1];
-				Picked( pickType );	
+				Picked( pickType );
+			
 			break;
 			case "Missile":
 			
@@ -50,10 +51,11 @@ public class PlayerHit : MonoBehaviour
 			
 				if( !forceField.isOn )
 					playerExplosion.Explode();
-				
-			break;
-			case "Enemy":
-			
+				else
+				{
+					playerShoot.StopShooting();
+					forceField.Hide();
+				}
 			break;
 		} 
 	}
@@ -66,6 +68,9 @@ public class PlayerHit : MonoBehaviour
 	}
 	
 	void addCoin() {
+		
+		playerSize.Grow();
+		
 		GUIManager.AddCoin();
 	}
 	
@@ -77,13 +82,11 @@ public class PlayerHit : MonoBehaviour
 			case "Green" :  playerColors.ChangeColor( PlayerColors.GREEN ); break;
 			case "Blue" :  	playerColors.ChangeColor( PlayerColors.BLUE ); 	break;
 			case "Yellow" : playerColors.ChangeColor( PlayerColors.YELLOW );break;
-			case "Big" :  	playerSize.ChangeSize( PlayerSize.BIG ); 		break;
-			case "Small" :  playerSize.ChangeSize( PlayerSize.SMALL ); 		break;
+//			case "Big" :  	playerSize.ChangeSize( PlayerSize.BIG ); 		break;
+//			case "Small" :  playerSize.ChangeSize( PlayerSize.SMALL ); 		break;
 			case "Shoot" :  playerShoot.StartShooting(); 					break;
 			case "Force" :  playerForceField.Show(); 						break;	
 		}
-		
-		Debug.Log("PICKUP" + " " + type );
 	}
 }
 

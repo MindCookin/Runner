@@ -33,11 +33,11 @@ public class PlayerColors : MonoBehaviour {
 		renderer.material.color = color;
 		collider.material		= colorDict[ color ];
 		
-		CancelInvoke("BackToInitialColor");
-		Invoke("BackToInitialColor", duration );
+//		CancelInvoke("BackToInitialColor");
+//		Invoke("BackToInitialColor", duration );
 	}
 	
-	void BackToInitialColor(){
+	public void BackToInitialColor(){
 		collider.material		= defaultMaterial;
 		renderer.material.color = initialColor;	
 	}

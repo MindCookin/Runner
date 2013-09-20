@@ -13,8 +13,7 @@ public class TitleText : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
 		
 		GameEventManager.GameInit 	+= GameInit;
-		GameEventManager.GameStart 	+= GameStart;
-		GameEventManager.GameOver 	+= GameOver;
+		GameEventManager.GameReset	+= GameRestart;
 	}
 	
 	// Update is called once per frame
@@ -33,11 +32,14 @@ public class TitleText : MonoBehaviour {
 		enabled 		 = true;
 	}
 	
-	void GameStart() {
+	void GameRestart() {
+		/*
+		Vector3 target = transform.position;
+		target.x = player.transform.position.x;
+		transform.position = target;
 		
-	}
-	
-	void GameOver() {
-		
+		transform.rotation = Quaternion.identity;
+		renderer.enabled = true;
+		enabled 		 = true;*/
 	}
 }

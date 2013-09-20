@@ -1,90 +1,144 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Timers;
 
-public class LevelStateManager : MonoBehaviour {
-	 
-	static float GLOBAL_MAX_ENEMY_PERCENT 	= 1; 
+public class LevelStateManager {
+	
+	static int TIMER_SECONDS 	= 1;
+	static int UPDATE_DISTANCE 	= 50;
+	static int UPDATE_PLATFORMS_EACH = 4;
+ 
+	static float GLOBAL_MAX_ENEMY_PERCENT 	= 0.8f; 
 	static float GLOBAL_ENEMY_MAX_SIZE 		= 2f;
-	static float GLOBAL_MAX_MISSILE_PERCENT = .7f;
+	static float GLOBAL_MAX_MISSILE_PERCENT = 0.6f;
 	static float GLOBAL_PLATFORM_MIN_X_GAP 	= 0; 
-	static float GLOBAL_PLATFORM_MAX_X_GAP 	= 20; 
-	static float GLOBAL_PLATFORM_MIN_Y_GAP 	= 0; 
+	static float GLOBAL_PLATFORM_MAX_X_GAP 	= 10; 
+	static float GLOBAL_PLATFORM_MIN_Y_GAP 	= -3; 
 	static float GLOBAL_PLATFORM_MAX_Y_GAP 	= 3; 
 	static float GLOBAL_PLATFORM_MAX_SIZE 	= 30;
-	static float GLOBAL_MAX_DROP_PERCENT 	= 1;
+	static float GLOBAL_MAX_DROP_PERCENT 	= .5f;
 	
-	float _enemyPercent; 
-	float _enemyMinSize; 
-	float _enemyMaxSize;
-	float _missilePercent;
-	float _platformMinXGap; 
-	float _platformMaxXGap; 
-	float _platformMinYGap; 
-	float _platformMaxYGap; 
-	float _platformMinSize;
-	float _platformMaxSize;
-	float _dropPickerPercent; 
+	float EnemyIncrement			= .05f; 
+	float EnemySizeIncrement		= .1f;
+	float MissileIncrement			= .005f;
+	float PlatformMinGapXIncrement	= 0f; 
+	float PlatformMaxGapXIncrement	= .5f;
+	float PlatformMinGapYIncrement	= .05f;
+	float PlatformMaxGapYIncrement	= .05f;
+	float PlatformSizeIncrement		= .05f;
+	float DropPickerIncrement		= .05f;
 	
-	public float EnemyIncrement, EnemySizeIncrement;
-	public float MissileIncrement;
-	public float PlatformMinGapXIncrement, PlatformMaxGapXIncrement, PlatformMinGapYIncrement, PlatformMaxGapYIncrement, PlatformSizeIncrement;
-	public float DropPickerIncrement;
+	float _enemyPercent, _enemyMinSize, _enemyMaxSize, _missilePercent, _platformMinXGap, _platformMaxXGap, _platformMinYGap, _platformMaxYGap, _platformMinSize, _platformMaxSize, _dropPickerPercent; 
+	Vector3 _playerInitialPosition;
 	
-	public int UPDATE_TIME;
+	private PlayerMove player;
+	private int lastDistanceUpdated;
 	
-	public static LevelStateManager instance;
+	private static bool isOKToCreate = false;
+	private static LevelStateManager instance = null;
 	
-	void Awake() {
+	Timer timer;
+	
+	public LevelStateManager(){
 		
-		instance = this;
+		if ( !isOKToCreate )
+			throw new UnityException("You need to access to LEvelStateManager through a Singleton!!!" );
+		else
+			Initialize();
+	}
+	
+   	public static LevelStateManager GetInstance()
+   	{
+    	if (instance == null)
+		{
+			isOKToCreate = true;
+        	instance = new LevelStateManager();
+			isOKToCreate = false;
+		}
+ 
+     	return instance;
+   	}
+	
+	void Initialize() {
+		
+		InitializeVariables();
+		
+		lastDistanceUpdated = 1;
 		
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameInit += GameInit;
 		GameEventManager.GameOver += GameOver;
+		
+		timer = new Timer();
+		timer.Interval = TIMER_SECONDS * 1000;
+		timer.Elapsed += new ElapsedEventHandler(UpdateVariables);
+		
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
+		_playerInitialPosition = player.transform.position;
 	}
 	
-	void UpdateVariables () {
+	void InitializeVariables() {
+		
+		lastDistanceUpdated = 1;
+		_enemyPercent 		= 0; 
+		_enemyMinSize 		= 1f; 
+		_enemyMaxSize 		= 1f;
+		_missilePercent 	= 0;
+		_platformMinXGap 	= 0; 
+		_platformMaxXGap 	= 0; 
+		_platformMinYGap 	= 0; 
+		_platformMaxYGap	= 0; 
+		_platformMinSize 	= 10;
+		_platformMaxSize 	= 15;
+		_dropPickerPercent 	= 0;
+	}
+	
+	void UpdateVariables (object source, ElapsedEventArgs e) {
+		
+		if ( player.DistanceTraveled / UPDATE_DISTANCE > lastDistanceUpdated )
+		{
 			
-		_enemyPercent 	= ( _enemyPercent <= GLOBAL_MAX_ENEMY_PERCENT ) ? _enemyPercent + EnemyIncrement : _enemyPercent;
-		_enemyMaxSize 	= ( _enemyMaxSize <= GLOBAL_ENEMY_MAX_SIZE ) ? _enemyMaxSize + EnemySizeIncrement : _enemyMaxSize;
-		
-		_missilePercent =  ( _missilePercent <= GLOBAL_MAX_MISSILE_PERCENT ) ? _missilePercent + MissileIncrement : _missilePercent; 
-		
-		_platformMinXGap = ( _platformMinXGap <= GLOBAL_PLATFORM_MIN_X_GAP ) ? _platformMinXGap + PlatformMinXGap : _platformMinXGap;
-		_platformMaxXGap = ( _platformMaxXGap <= GLOBAL_PLATFORM_MAX_X_GAP ) ? _platformMaxXGap + PlatformMaxXGap : _platformMaxXGap;
-		
-		_platformMinYGap = ( _platformMinYGap <= GLOBAL_PLATFORM_MIN_Y_GAP ) ? _platformMinYGap + PlatformMinYGap : _platformMinYGap; 
-		_platformMaxYGap = ( _platformMaxYGap <= GLOBAL_PLATFORM_MAX_Y_GAP ) ? _platformMaxYGap + PlatformMaxYGap : _platformMaxYGap; 
-		
-		_platformMaxSize = ( _platformMaxSize <= GLOBAL_PLATFORM_MAX_SIZE ) ? _platformMaxSize + PlatformSizeIncrement : _platformMaxSize;
-		
-		_dropPickerPercent = ( _dropPickerPercent <= GLOBAL_MAX_DROP_PERCENT ) ? _dropPickerPercent + DropPickerIncrement : _dropPickerPercent; 
-
+			_enemyPercent 	= ( _enemyPercent <= GLOBAL_MAX_ENEMY_PERCENT ) ? _enemyPercent + EnemyIncrement : _enemyPercent;
+			_enemyMaxSize 	= ( _enemyMaxSize <= GLOBAL_ENEMY_MAX_SIZE ) ? _enemyMaxSize + EnemySizeIncrement : _enemyMaxSize;
+			_missilePercent =  ( _missilePercent <= GLOBAL_MAX_MISSILE_PERCENT ) ? _missilePercent + MissileIncrement : _missilePercent; 
+			_dropPickerPercent = ( _dropPickerPercent <= GLOBAL_MAX_DROP_PERCENT ) ? _dropPickerPercent + DropPickerIncrement : _dropPickerPercent; 
+			
+			if ( lastDistanceUpdated % UPDATE_PLATFORMS_EACH == 0 )
+			{	
+				_platformMinXGap = ( _platformMinXGap <= GLOBAL_PLATFORM_MIN_X_GAP ) ? _platformMinXGap + PlatformMinGapXIncrement : _platformMinXGap;
+				_platformMaxXGap = ( _platformMaxXGap <= GLOBAL_PLATFORM_MAX_X_GAP ) ? _platformMaxXGap + PlatformMaxGapXIncrement : _platformMaxXGap;
+				_platformMinYGap = ( _platformMinYGap >= GLOBAL_PLATFORM_MIN_Y_GAP ) ? _platformMinYGap - PlatformMinGapYIncrement : _platformMinYGap; 
+				_platformMaxYGap = ( _platformMaxYGap <= GLOBAL_PLATFORM_MAX_Y_GAP ) ? _platformMaxYGap + PlatformMaxGapYIncrement : _platformMaxYGap; 
+				_platformMaxSize = ( _platformMaxSize <= GLOBAL_PLATFORM_MAX_SIZE ) ? _platformMaxSize + PlatformSizeIncrement : _platformMaxSize;
+			}
+			
+			lastDistanceUpdated = Mathf.FloorToInt( player.DistanceTraveled / UPDATE_DISTANCE ) + 1;
+		}
 	}
 	
 	void GameStart() {
 		
-		InvokeRepeating( "UpdateVariables", 0, UPDATE_TIME );
+		lastDistanceUpdated = 1;
+		timer.Start();
 	}
 	
 	void GameInit() {
-			
-		_enemyPercent = 0; 
-		_enemyMinSize = 0.5f; 
-		_enemyMaxSize = 0.5f;
-		_missilePercent = 0;
-		_platformMinXGap = 0; 
-		_platformMaxXGap = 0; 
-		_platformMinYGap = 0; 
-		_platformMaxYGap = 0; 
-		_platformMinSize = 5;
-		_platformMaxSize = 0;
-		_dropPickerPercent = 0; 
 	}
 	
 	void GameOver() {
 		
-		CancelInvoke( "UpdateVariables" );
+		Debug.Log("Initialize Variables");
+		
+		timer.Stop();
+		
+		InitializeVariables();
+	}
+	
+	public void SetInitialPosition( Vector3 pos ){
+		
+		_playerInitialPosition = pos;
+		
+		InitializeVariables();	
 	}
 	
 	public float EnemyPercent { get { return _enemyPercent; } } 
@@ -98,5 +152,5 @@ public class LevelStateManager : MonoBehaviour {
 	public float PlatformMinSize { get { return _platformMinSize; } }
 	public float PlatformMaxSize { get { return _platformMaxSize; } }
 	public float DropPickerPercent { get { return _dropPickerPercent; } }
-	
+	public Vector3 PlayerInitialPosition { get { return _playerInitialPosition; } }
 }
