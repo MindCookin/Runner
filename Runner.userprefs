@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Platform/Platform.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenario/Camera/CameraMovement.cs">
     <Files>
-      <File FileName="Assets/Scripts/Platform/Platform.cs" Line="86" Column="43" />
-      <File FileName="Assets/Scripts/Items/Pickups/PickupItem.cs" Line="26" Column="18" />
-      <File FileName="Assets/Scripts/Items/Pickups/PlatformPickupPlace.cs" Line="8" Column="10" />
+      <File FileName="Assets/Plugins/AdMobPlugin/AdMobPluginDemoScript.cs" Line="10" Column="68" />
+      <File FileName="Assets/Plugins/AdMobPlugin/AdMobPlugin.cs" Line="43" Column="70" />
+      <File FileName="Assets/Scripts/Scenario/GUI/ScrollText.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scenario/Camera/CameraMovement.cs" Line="22" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,13 +13,23 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Enemy" expanded="True" />
-                <Node name="Items" expanded="True">
-                  <Node name="Pickups" expanded="True" />
+                <Node name="Entities" expanded="True">
+                  <Node name="Player" expanded="True" />
                 </Node>
-                <Node name="Platform" expanded="True">
-                  <Node name="Platform.cs" selected="True" />
+                <Node name="Scenario" expanded="True">
+                  <Node name="Camera" expanded="True">
+                    <Node name="CameraMovement.cs" selected="True" />
+                  </Node>
+                  <Node name="GUI" expanded="True" />
                 </Node>
+              </Node>
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Plugins" expanded="True">
+                <Node name="AdMobPlugin" expanded="True" />
+                <Node name="Android" expanded="True" />
               </Node>
             </Node>
           </Node>

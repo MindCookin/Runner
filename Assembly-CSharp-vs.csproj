@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_1;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_ANDROID;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;UNITY_ANDROID_API;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_1;UNITY_4_2;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -44,47 +44,58 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\PlayerPopup.cs" />
-     <Compile Include="Assets\Scripts\Bullet\BulletMove.cs" />
-     <Compile Include="Assets\Scripts\Camera\CameraMovement.cs" />
-     <Compile Include="Assets\Scripts\Cannon\CannonItem.cs" />
-     <Compile Include="Assets\Scripts\Cannon\CannonMove.cs" />
-     <Compile Include="Assets\Scripts\Cannon\CannonPicker.cs" />
-     <Compile Include="Assets\Scripts\Cannon\CannonShoot.cs" />
-     <Compile Include="Assets\Scripts\Enemy\EnemyBouncerMove.cs" />
-     <Compile Include="Assets\Scripts\Enemy\EnemyPlace.cs" />
-     <Compile Include="Assets\Scripts\Enemy\EnemySliderMove.cs" />
-     <Compile Include="Assets\Scripts\Items\Coins\Coin.cs" />
-     <Compile Include="Assets\Scripts\Items\Coins\CoinDistribution.cs" />
-     <Compile Include="Assets\Scripts\Items\Pickups\DropPickupMove.cs" />
-     <Compile Include="Assets\Scripts\Items\Pickups\PickupItem.cs" />
-     <Compile Include="Assets\Scripts\Items\Pickups\PickupMove.cs" />
-     <Compile Include="Assets\Scripts\Items\Pickups\PlatformPickupPlace.cs" />
-     <Compile Include="Assets\Scripts\Managers\DropItemsManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\GUIManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\GameEventManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\LevelStateManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\MissileManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\PlatformManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\SkylineManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\StaticItemsManager.cs" />
-     <Compile Include="Assets\Scripts\Missile\MissileMove.cs" />
-     <Compile Include="Assets\Scripts\Platform\Platform.cs" />
-     <Compile Include="Assets\Scripts\Player\ForceField.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerColors.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerExplosion.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerForceField.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerHit.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerSize.cs" />
+     <Compile Include="Assets\Scripts\Data\LoadedData.cs" />
+     <Compile Include="Assets\Scripts\Data\PlayerDataManager.cs" />
+     <Compile Include="Assets\Scripts\Data\SessionData.cs" />
+     <Compile Include="Assets\Scripts\Entities\Bullet\BulletMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Cannon\CannonItem.cs" />
+     <Compile Include="Assets\Scripts\Entities\Cannon\CannonMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Cannon\CannonPicker.cs" />
+     <Compile Include="Assets\Scripts\Entities\Cannon\CannonShoot.cs" />
+     <Compile Include="Assets\Scripts\Entities\Enemy\EnemyBouncerMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Enemy\EnemyPlace.cs" />
+     <Compile Include="Assets\Scripts\Entities\Enemy\EnemySliderMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Coins\Coin.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Coins\CoinDistribution.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Pickups\DropPickupMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Pickups\PickupItem.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Pickups\PickupMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Pickups\PlatformPickupPlace.cs" />
+     <Compile Include="Assets\Scripts\Entities\Missile\MissileMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\ForceField.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerColors.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerExplosion.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerForceField.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerHit.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerShoot.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerSize.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerSounds.cs" />
+     <Compile Include="Assets\Scripts\Scenario\BackgroundMusic.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Camera\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Scenario\GUI\GUIManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\GUI\PlayerPopup.cs" />
+     <Compile Include="Assets\Scripts\Scenario\GUI\ScrollText.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Managers\DropItemsManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Managers\GameEventManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Managers\LevelStateManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Managers\MissileManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Managers\PlatformManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Managers\SkylineManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Managers\StaticItemsManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Platform\Platform.cs" />
+     <Compile Include="Assets\Scripts\Scenario\TitleText.cs" />
      <Compile Include="Assets\Scripts\TestsOrUnused\TestScript.cs" />
      <Compile Include="Assets\Scripts\Utils\EntityList.cs" />
      <Compile Include="Assets\Scripts\Utils\FPSCounter.cs" />
      <Compile Include="Assets\Scripts\Utils\PickupList.cs" />
      <Compile Include="Assets\Scripts\Utils\Tetrahedron.cs" />
-     <Compile Include="Assets\TitleText.cs" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{18DC6EAE-A731-76F5-0E2E-32C7F28769A5}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
