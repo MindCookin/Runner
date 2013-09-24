@@ -15,14 +15,14 @@ public class PlatformPickupPlace : MonoBehaviour
 
 	public void Place( Transform platform ){
 		
-		initialPosition = platform.localPosition;
-		initialPosition.y += platform.localScale.y + offsetY;
+		initialPosition 	= platform.position;
+		initialPosition.y 	+= platform.localScale.y + offsetY;
 		
 		transform.rotation = Quaternion.identity;
 		transform.Rotate( Random.value * 5, 0, Random.value * 100 );
 		transform.position = initialPosition;		
 		
-		gameObject.SetActive(true);
+		enabled = true;
 	}
 	
 	void Update () {
@@ -41,7 +41,12 @@ public class PlatformPickupPlace : MonoBehaviour
 	}
 	
 	public void Reset() {
+		enabled = true;	
 		counter = Random.Range( 0, 360 );
+	}
+	
+	public void Remove() {
+		enabled = false;	
 	}
 }
 

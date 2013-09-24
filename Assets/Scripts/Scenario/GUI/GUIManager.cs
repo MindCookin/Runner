@@ -2,12 +2,18 @@
 
 public class GUIManager : MonoBehaviour {
 	
-	public GUIText distanceText, gameOverText, instructionsText, coinsText;
+	public GUIText instructionsText;
 	
 	private static GUIManager instance;
 	public int coins;
 	
 	void Start () {
+		
+		if ( SystemInfo.deviceType == DeviceType.Handheld )
+			instructionsText.text = "Touch the screen to Jump. Touch it again for Double Jump.";
+		else 
+			instructionsText.text = "Press Jump (x or space) to play. Press it twice for Double Jump.";
+		
 		// create instance to enable boots count
 		instance = this;
 		
@@ -16,23 +22,15 @@ public class GUIManager : MonoBehaviour {
 		GameEventManager.GameOver 	+= GameOver;
 		GameEventManager.GameInit 	+= GameInit;
 		
-		// disable by default
-		gameOverText.enabled = false;
-		
 		GameEventManager.TriggerGameInit();
 	}
 	
 	public static void AddCoin() {
 		
 		instance.coins++;
-		
-		if( instance )
-			instance.coinsText.text = "Coins : " + instance.coins.ToString();
 	}
 
 	public static void SetDistance(float distance){
-		if( instance )
-			instance.distanceText.text = distance.ToString("f0");
 	}
 
 	void Update () {
@@ -43,10 +41,6 @@ public class GUIManager : MonoBehaviour {
 	
 	private void GameStart () {
 	
-		distanceText.enabled = true;
-		coinsText.enabled = true;
-		
-		gameOverText.enabled = false;
 		instructionsText.enabled = false;
 		
 		enabled = false;
@@ -55,12 +49,7 @@ public class GUIManager : MonoBehaviour {
 	private void GameInit () {
 	
 		coins = 0;
-		coinsText.text = "No Coins";
-		
-		distanceText.enabled = false;
-		coinsText.enabled = false;
 		instructionsText.enabled = true;
-		gameOverText.enabled = false;
 		
 		enabled = true;
 	}

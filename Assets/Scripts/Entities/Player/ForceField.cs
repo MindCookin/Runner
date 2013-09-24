@@ -10,7 +10,7 @@ public class ForceField : MonoBehaviour {
 	private Vector3 targetSize;
 	private Light forceFieldLight;
 	
-	public bool isOn { get { return renderer.enabled; } }
+	public bool isOn { get { return ( targetIntensity > 0 ); } }
 	
 	// Use this for initialization
 	void Start () {
@@ -20,14 +20,16 @@ public class ForceField : MonoBehaviour {
 		
 		targetIntensity 		= 0;
 		targetSize				= Vector3.zero;
+		transform.localScale 	= Vector3.zero;
 		
 		renderer.enabled 		= false;
-		transform.localScale 	= Vector3.zero;
+		enabled = false;
 	}
 	
 	public void Show()
 	{
-		renderer.enabled = true;
+		renderer.enabled 	= true;
+		enabled				= true;
 		
 		targetSize 		= Vector3.one * size;
 		targetIntensity	= 0.68f;
@@ -43,13 +45,13 @@ public class ForceField : MonoBehaviour {
 			transform.localScale 		= Vector3.Lerp( transform.localScale, targetSize, speed * Time.deltaTime ); 
 			forceFieldLight.intensity	= Mathf.Lerp( forceFieldLight.intensity, targetIntensity, speed * Time.deltaTime );
 		}
-		else if ( targetSize == Vector3.zero )
-			renderer.enabled = false;
+		else if ( targetSize == Vector3.zero ) {
+			renderer.enabled 	= false;
+			enabled				= false;
+		}
 	}
 	
 	public void Hide() {
-		
-		
 		
 		targetSize = Vector3.zero;
 		targetIntensity = 0;

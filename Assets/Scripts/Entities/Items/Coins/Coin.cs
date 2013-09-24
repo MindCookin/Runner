@@ -10,8 +10,7 @@ public class Coin: MonoBehaviour {
 		
 		startRotation = transform.rotation;
 		
-		enabled = false;
-		renderer.enabled = false;
+		Disable();
 	}
 	
 	void Update () {
@@ -21,12 +20,14 @@ public class Coin: MonoBehaviour {
 
 	private void Enable() {
 		
+		collider.enabled = true;
 		renderer.enabled = true;
 		enabled = true;
 	}
 	
 	public void Disable() {
 		
+		collider.enabled = false;
 		renderer.enabled = false;
 		enabled = false;
 	}
@@ -35,7 +36,6 @@ public class Coin: MonoBehaviour {
 		
 		transform.rotation = startRotation;
 		
-		renderer.enabled = true;
-		enabled = true;
+		Enable();
 	}
 }

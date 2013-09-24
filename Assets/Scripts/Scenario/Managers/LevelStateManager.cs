@@ -18,7 +18,7 @@ public class LevelStateManager {
 	static float GLOBAL_PLATFORM_MAX_SIZE 	= 30;
 	static float GLOBAL_MAX_DROP_PERCENT 	= .5f;
 	
-	float EnemyIncrement			= .05f; 
+	float EnemyIncrement			= .025f; 
 	float EnemySizeIncrement		= .1f;
 	float MissileIncrement			= .005f;
 	float PlatformMinGapXIncrement	= 0f; 

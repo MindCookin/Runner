@@ -45,10 +45,11 @@ public class PlayerHit : MonoBehaviour
 			case "Pickup":
 				
 				capsules++;
-				col.gameObject.SetActive(false);
+				col.GetComponent<PickupSound>().Play();
+				col.GetComponent<PickupItem>().Picked();
 			
 				string pickType = col.renderer.material.name.Split('_')[1];
-				Picked( pickType );
+					Picked( pickType );
 			
 			break;
 			case "Missile":
@@ -89,8 +90,6 @@ public class PlayerHit : MonoBehaviour
 	}
 	
 	void Picked( string type ) {
-		
-		playerSounds.PlaySounds( playerSounds.pickup );
 		
 		switch( type )
 		{

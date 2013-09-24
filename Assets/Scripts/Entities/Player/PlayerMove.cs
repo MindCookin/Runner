@@ -132,6 +132,8 @@ public class PlayerMove : MonoBehaviour {
 			_enemiesCollided++;
 			playerShoot.StopShooting();
 			playerSize.Shrink();
+			
+			col.GetComponent<EnemySize>().Shrink();
 		}
 	}
 	

@@ -27,6 +27,9 @@ public class PlayerShoot : MonoBehaviour {
 	
 	public void StartShooting() {
 		
+		CancelInvoke("StopShooting");
+		CancelInvoke("ShootQuad");
+		
 		InvokeRepeating( "ShootQuad", 0, delay );
 		Invoke( "StopShooting", duration );
 		
@@ -46,7 +49,7 @@ public class PlayerShoot : MonoBehaviour {
 			q.position = transform.position;
 			q.GetComponent<BulletMove>().direction = direction;
 			
-			if ( q.GetComponent<AudioSource>().enabled )
+			if ( q.gameObject.activeSelf && q.GetComponent<AudioSource>().enabled )
 				q.GetComponent<AudioSource>().Play();
 			
 			q.gameObject.SetActive( true );

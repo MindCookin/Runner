@@ -91,6 +91,13 @@ public class PlatformManager : MonoBehaviour {
 	
 	void GameOver () {
 		
+		for( int i = 0; i < queuedQuantity; i++ )
+		{
+			Transform targetObject = platformQueue.Dequeue();
+			targetObject.GetComponent<Platform>().RemoveAll();
+			platformQueue.Enqueue( targetObject );
+		}
+		
 		enabled = false;
 	}
 }

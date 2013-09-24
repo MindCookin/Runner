@@ -15,6 +15,9 @@ public class Platform : MonoBehaviour
 	private Transform[] enemies;
 	Transform capsule;
 	
+	PickupItem capsulePickup;
+	PlatformPickupPlace capsulePlace;
+	
 	void Awake() {
 		
 		GameObject enemyContainer = GameObject.Find("EnemyContainer");
@@ -30,7 +33,10 @@ public class Platform : MonoBehaviour
 		
 		slider.gameObject.SetActive( false );
 		bouncer.gameObject.SetActive( false );
-		capsule.gameObject.SetActive( false );
+//		capsule.gameObject.SetActive( false );
+		
+		capsulePickup 	= capsule.GetComponent<PickupItem>();
+		capsulePlace 	= capsule.GetComponent<PlatformPickupPlace>();
 		
 		enemies = new Transform[2] { slider, bouncer };
 	}
@@ -66,17 +72,20 @@ public class Platform : MonoBehaviour
 		renderer.material = materials[materialIndex];
 		collider.material = physicMaterials[materialIndex];
 		
+		capsulePickup.Disable();
+		
+		for ( int i = 0; i < enemies.Length; i++ )
+			enemies[i].gameObject.SetActive( false );
+		
 		if( Random.value < LevelStateManager.GetInstance().EnemyPercent )
 			AddEnemy();
 		
-		if( Random.value < LevelStateManager.GetInstance().DropPickerPercent )
+		if( ( transform.position.x > StaticItemsManager.LastPos && transform.position.x < StaticItemsManager.NextPos )
+				&&	Random.value < LevelStateManager.GetInstance().DropPickerPercent )
 			AddCapsule();
 	}
 	
 	private void AddEnemy(){
-	
-		for ( int i = 0; i < enemies.Length; i++ )
-			enemies[i].gameObject.SetActive( false );
 			
 		Transform enemy = enemies[ Random.Range( 0, enemies.Length ) ];
 		enemy.GetComponent<EnemyPlace>().Place( transform );
@@ -86,8 +95,18 @@ public class Platform : MonoBehaviour
 	
 	private void AddCapsule() {
 		
+//		capsule.gameObject.SetActive( true );
 		capsule.GetComponent<PickupItem>().Reset();
 		capsule.GetComponent<PlatformPickupPlace>().Place( transform );
+	}
+	
+	public void RemoveAll() {
+		
+		for ( int i = 0; i < enemies.Length; i++ )
+			enemies[i].gameObject.SetActive( false );
+		
+//		capsule.gameObject.SetActive( false );
+		capsule.GetComponent<PickupItem>().Disable();
 	}
 	
 	public Vector3 NextPosition{ get { return mNextPosition; } }

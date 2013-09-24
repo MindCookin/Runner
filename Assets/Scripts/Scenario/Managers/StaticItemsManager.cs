@@ -8,14 +8,17 @@ public class StaticItemsManager : MonoBehaviour
 	public int recycleOffset;
 	public Transform coin;
 	
-	private Vector3 nextPosition;
+	public Vector3 nextPosition;
 	private Queue<Transform> coinQueue;
 	private int queuedQuantity = 10;
 	
 	private PlayerMove player;
 	
+	private static StaticItemsManager instance;
+	
 	void Awake() {
 		
+		instance = this;
 		nextPosition = startingPosition;
 	
 		GameEventManager.GameStart += GameStart;
@@ -64,4 +67,7 @@ public class StaticItemsManager : MonoBehaviour
 	void GameOver () {
 		enabled = false;
 	}
+	
+	public static float LastPos { get { return instance.nextPosition.x + 3; }}
+	public static float NextPos { get { return instance.nextPosition.x + instance.startingPosition.x - 3; }}
 }

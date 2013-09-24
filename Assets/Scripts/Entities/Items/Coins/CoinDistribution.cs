@@ -6,16 +6,16 @@ public static class CoinDistribution
 {
 	public static Vector3 RandomDistribution( Queue<Transform> coinQueue, Vector3 nextPosition )
 	{
-		int index = Random.Range(0, 5);
+		int index = Random.Range(0, 3);
 		Vector3 response = Vector3.zero;
 		
 		switch ( index )
 		{
 			case 0 : response = DrawLine( coinQueue, nextPosition ); break;
-			case 1 : response = DrawSquare( coinQueue, nextPosition ); break;
-			case 2 : response = DrawCircle( coinQueue, nextPosition ); break;
-			case 3 : response = DrawFullWave( coinQueue, nextPosition ); break;
-			case 4 : response = DrawHalfWave( coinQueue, nextPosition ); break; 	
+//			case 1 : response = DrawSquare( coinQueue, nextPosition ); break;
+//			case 2 : response = DrawCircle( coinQueue, nextPosition ); break;
+			case 1 : response = DrawFullWave( coinQueue, nextPosition ); break;
+			case 2 : response = DrawHalfWave( coinQueue, nextPosition ); break; 	
 		}
 		
 		return response;

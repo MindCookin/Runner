@@ -84,6 +84,9 @@ public class MissileManager : MonoBehaviour {
 	
 	void GameOver () {
 		enabled = false;
-		Remove();
+		
+		
+		for ( int i = 0; i < quantity; i++ )
+			Remove();
 	}
 }

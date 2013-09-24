@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerSounds : MonoBehaviour {
 	
 	public AudioSource source1, source2;
-	public AudioClip explosion, pickup, grow, shrink, jump, doubleJump, missileOff;
+	public AudioClip explosion, grow, shrink, jump, doubleJump, missileOff;
 	
 	public void PlaySounds( AudioClip clip ) {
 		

@@ -100,16 +100,29 @@ public class ScrollText : MonoBehaviour
 	void SetStatisticsText() {
 		
 		text = "" +
-			"coins : " 		+ session.coins + " : " + loaded.max_coins + " : " + loaded.total_coins + " || " +
-			"capsuels : " 	+ session.capsules + " : " + loaded.max_capsules + " : " + loaded.total_capsules + " || " +
-			"distance : " 	+ session.distance + " : " + loaded.max_distance + " : " + loaded.total_distance + " || " +
-			"altitude : " 	+ session.altitude + " : " + loaded.max_altitude + " || " +
-			"size : " 		+ session.size + " : " + loaded.max_size + " || " +
-			"velocity : " 	+ session.velocity + " : " + loaded.max_velocity + " || " +
-			"enemies : " 	+ session.enemies + " : " + " : " + loaded.total_enemies + " || " +
-			"enemies collided : " + session.enemies_collided + " : " + loaded.total_enemies_collided + " || " +
-			"missiles : " 	+ session.missiles + " : " + loaded.total_missiles + " || " +
-			"missiles collided : " + session.missiles_collided + " : " + loaded.total_missiles_collided + " || ";
+			"COINS CAPTURED: " + session.coins + " || " + 
+			"MAX COINS CAPTURED: " + loaded.max_coins + " || " +
+			"TOTAL COINS CAPTURED: " + loaded.total_coins + " || " +
+			"CAPSULES EATED: " 	+ session.capsules + " || " +
+			"MAX CAPSULES EATED: " + loaded.max_capsules + " || " +
+			"TOTAL CAPSULES EATED: " + loaded.total_capsules + " || " +
+			"DISTANCE TRAVELED: " 	+ session.distance + " || " + 
+			"MAX DISTANCE TRAVELED: " + loaded.max_distance + " || " +
+			"TOTAL DISTANCE TRAVELED: " + loaded.total_distance + " || " +
+			"ALTITUDE REACHED: " 	+ session.altitude + " || " +
+			"MAX ALTITUDE REACHED: " + loaded.max_altitude + " || " +
+			"MAX SIZE ON THIS GAME: " + session.size + " || " +
+			"MAX SIZE EVER " + loaded.max_size + " || " +
+			"MAX VELOCITY ON THIS GAME: " 	+ session.velocity + " || " +
+			"MAX VELOCITY EVER: " + loaded.max_velocity + " || " +
+			"ENEMIES PASSED: " 	+ session.enemies + " || " +
+			"TOTAL ENEMIES PASSED: " + loaded.total_enemies + " || " +
+			"ENEMIES COLLIDED: " + session.enemies_collided +" || " +
+			"TOTAL ENEMIES COLLIDED: " + loaded.total_enemies_collided + " || " +
+			"MISSILES PASSED: " 	+ session.missiles + " || " +
+			"TOTAL MISSILES PASSED: " + loaded.total_missiles + " || " +
+			"MISSILES COLLIDED: " + session.missiles_collided +" || " + 
+			"TOTAL MISSILES COLLIDED: " + loaded.total_missiles_collided + " || ";
 	}
 }
 

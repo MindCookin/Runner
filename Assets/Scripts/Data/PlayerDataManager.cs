@@ -97,12 +97,12 @@ public class PlayerDataManager : MonoBehaviour
 		loaded.max_velocity = ( session.velocity > loaded.max_velocity ) ? session.velocity : loaded.max_velocity;
 	}
 	
-	
+	/*
 	void OnGUI()
 	{
 		GUILayout.Label ( string.Format ( "{0} : {1:#,0}", session.coins, loaded.max_coins ) );
 		GUILayout.Label ( string.Format ( "{0} : {1:#,0}", session.distance, loaded.max_distance ) );
-	}
+	}*/
 	
 	public LoadedData Loaded { get { return loaded; } }
 	public SessionData Session { get { return session; } }
