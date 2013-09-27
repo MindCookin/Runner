@@ -7,7 +7,7 @@ public class AdMobPlugin : MonoBehaviour {
     // Defines string values for supported ad sizes.
     public class AdSize
     {
-        private string adSize;
+		private string adSize;
         private AdSize(string value)
         {
             this.adSize = value;
@@ -34,7 +34,7 @@ public class AdMobPlugin : MonoBehaviour {
 
     void Awake()
     {
-        gameObject.name = this.GetType().ToString();
+		gameObject.name = this.GetType().ToString();
         SetCallbackHandlerName(gameObject.name);
         DontDestroyOnLoad(this);
     }

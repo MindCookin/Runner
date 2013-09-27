@@ -6,7 +6,7 @@ public class AdMobPluginDemoScript : MonoBehaviour {
     void Start()
     {
 		print("----------->>>>>>>>>>>>>>>> Started");
-        AdMobPlugin.CreateBannerView("ca-app-pub-1613529252194340/9625194314",
+        AdMobPlugin.CreateBannerView("ca-app-pub-1613529252194340/1232139911",
                                      AdMobPlugin.AdSize.SmartBanner,
                                      true);
         print("----------->>>>>>>>>>>>>>>> Created Banner View");
