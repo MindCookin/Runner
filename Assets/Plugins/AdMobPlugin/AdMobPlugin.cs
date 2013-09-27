@@ -42,45 +42,60 @@ public class AdMobPlugin : MonoBehaviour {
     // Create a banner view and add it into the view hierarchy.
     public static void CreateBannerView(string publisherId, AdSize adSize, bool positionAtTop)
     {
-		AndroidJavaClass playerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject activity = playerClass.GetStatic<AndroidJavaObject>("currentActivity");
-		AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
-        pluginClass.CallStatic("createBannerView",
-			new object[4] {activity, publisherId, adSize.ToString(), positionAtTop});
+		#if UNITY_ANDROID
+		
+			AndroidJavaClass playerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        	AndroidJavaObject activity = playerClass.GetStatic<AndroidJavaObject>("currentActivity");
+			AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
+        	pluginClass.CallStatic("createBannerView",
+				new object[4] {activity, publisherId, adSize.ToString(), positionAtTop});
+		
+		#endif
     }
 
 	// Request a new ad for the banner view without any extras.
     public static void RequestBannerAd(bool isTesting)
     {
-		AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
-        pluginClass.CallStatic("requestBannerAd", new object[1] {isTesting});
+		#if UNITY_ANDROID
+		
+			AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
+        	pluginClass.CallStatic("requestBannerAd", new object[1] {isTesting});
+		#endif
     }
 
     // Request a new ad for the banner view with extras.
     public static void RequestBannerAd(bool isTesting, string extras)
     {
-		AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
-        pluginClass.CallStatic("requestBannerAd", new object[2] {isTesting, extras});
+		#if UNITY_ANDROID
+			AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
+        	pluginClass.CallStatic("requestBannerAd", new object[2] {isTesting, extras});
+		#endif
     }
 
     // Set the name of the callback handler so the right component gets ad callbacks.
     public static void SetCallbackHandlerName(string callbackHandlerName)
     {
-		AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
-        pluginClass.CallStatic("setCallbackHandlerName", new object[1] {callbackHandlerName});
+		#if UNITY_ANDROID
+			AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
+        	pluginClass.CallStatic("setCallbackHandlerName", new object[1] {callbackHandlerName});
+		#endif
     }
 
     // Hide the banner view from the screen.
     public static void HideBannerView()
     {
-		AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
-        pluginClass.CallStatic("hideBannerView");
+		#if UNITY_ANDROID
+			AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
+        	pluginClass.CallStatic("hideBannerView");
+		#endif
     }
 
     // Show the banner view on the screen.
     public static void ShowBannerView() {
-		AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
-		pluginClass.CallStatic("showBannerView");
+		#if UNITY_ANDROID
+			AndroidJavaClass pluginClass = new AndroidJavaClass("com.google.unity.AdMobPlugin");
+			pluginClass.CallStatic("showBannerView");
+		#endif
     }
 
     public void OnReceiveAd(string unusedMessage)

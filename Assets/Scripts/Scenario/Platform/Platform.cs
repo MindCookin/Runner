@@ -16,7 +16,6 @@ public class Platform : MonoBehaviour
 	Transform capsule;
 	
 	PickupItem capsulePickup;
-	PlatformPickupPlace capsulePlace;
 	
 	void Awake() {
 		
@@ -36,7 +35,6 @@ public class Platform : MonoBehaviour
 //		capsule.gameObject.SetActive( false );
 		
 		capsulePickup 	= capsule.GetComponent<PickupItem>();
-		capsulePlace 	= capsule.GetComponent<PlatformPickupPlace>();
 		
 		enemies = new Transform[2] { slider, bouncer };
 	}

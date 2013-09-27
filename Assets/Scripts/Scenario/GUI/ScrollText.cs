@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ScrollText : MonoBehaviour
 {
-	public float charactersPerSecond = 8.0f;
+	public float charactersPerSecond = 8.0f, divider;
+	public GUIText textField;
 //	public string text = "Here is some text to scroll";
 	
 	Rect rect;
@@ -42,6 +43,7 @@ public class ScrollText : MonoBehaviour
 		
 	    NewText();
 		
+		textField.enabled = false;
 		enabled = false;
 	}
 	 
@@ -52,7 +54,7 @@ public class ScrollText : MonoBehaviour
 	    if (textUsing != text)
 	       NewText();
 	 
-	    secondsPerCharacter = 1.0f / charactersPerSecond;
+	    secondsPerCharacter = divider / charactersPerSecond;
 	    
 		if ( timer > secondsPerCharacter) {
 	      int iT  = Mathf.FloorToInt(timer / secondsPerCharacter);
@@ -62,11 +64,13 @@ public class ScrollText : MonoBehaviour
 	    }
 		
 		timer += Time.deltaTime;
+		
+		textField.text = scrollText;
 	}
-	 
+	/* 
 	void OnGUI() {
 		GUI.Label(rect, scrollText);
-	}
+	}*/
 	 
 	void NewText() {
 	    textUsing = text;
@@ -79,7 +83,10 @@ public class ScrollText : MonoBehaviour
 	void GameInit() {
 		
 		if( show )
+		{
 			enabled = true;
+			textField.enabled = true;
+		}
 		
 		PlayerDataManager dataManager = GameObject.FindGameObjectWithTag( "GameData" ).GetComponent<PlayerDataManager>();
 		
@@ -90,6 +97,7 @@ public class ScrollText : MonoBehaviour
 	void GameStart() {
 		
 		enabled = false;
+		textField.enabled = false;
 	}
 	
 	void GameOver() {

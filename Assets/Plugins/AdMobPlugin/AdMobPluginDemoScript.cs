@@ -5,13 +5,17 @@ public class AdMobPluginDemoScript : MonoBehaviour {
 
     void Start()
     {
-		print("----------->>>>>>>>>>>>>>>> Started");
-        AdMobPlugin.CreateBannerView("ca-app-pub-1613529252194340/1232139911",
+		#if UNITY_ANDROID
+			print("----------->>>>>>>>>>>>>>>> Started");
+        	AdMobPlugin.CreateBannerView("ca-app-pub-1613529252194340/1232139911",
                                      AdMobPlugin.AdSize.SmartBanner,
                                      true);
-        print("----------->>>>>>>>>>>>>>>> Created Banner View");
-        AdMobPlugin.RequestBannerAd(true);
-        print("----------->>>>>>>>>>>>>>>> Requested Banner Ad");
+        	print("----------->>>>>>>>>>>>>>>> Created Banner View");
+        	AdMobPlugin.RequestBannerAd(true);
+        	print("----------->>>>>>>>>>>>>>>> Requested Banner Ad");
+		#else
+			print ("AdMobPlugin for Android won't show because you aren't over and Android Device");
+		#endif
     }
 
     void OnEnable()

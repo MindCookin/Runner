@@ -2,10 +2,10 @@
 
 public class GUIManager : MonoBehaviour {
 	
-	public GUIText instructionsText;
+	public GUIText instructionsText, gameplayStatsText;
 	
 	private static GUIManager instance;
-	public int coins;
+	public int coins, distance;
 	
 	void Start () {
 		
@@ -28,9 +28,16 @@ public class GUIManager : MonoBehaviour {
 	public static void AddCoin() {
 		
 		instance.coins++;
+		instance.UpdateGameplayText();
 	}
 
-	public static void SetDistance(float distance){
+	public static void SetDistance(float dist){
+		
+		if ( instance )
+		{
+			instance.distance = Mathf.FloorToInt( dist );
+			instance.UpdateGameplayText();
+		}
 	}
 
 	void Update () {
@@ -42,6 +49,7 @@ public class GUIManager : MonoBehaviour {
 	private void GameStart () {
 	
 		instructionsText.enabled = false;
+		gameplayStatsText.enabled= true;
 		
 		enabled = false;
 	}
@@ -50,12 +58,19 @@ public class GUIManager : MonoBehaviour {
 	
 		coins = 0;
 		instructionsText.enabled = true;
+		gameplayStatsText.enabled= false;
 		
 		enabled = true;
 	}
 	
 	private void GameOver () {
 		
+		gameplayStatsText.enabled= false;
+		
 		PlayerDataManager.SetValue( SessionData.COINS, coins );
+	}
+	
+	public void UpdateGameplayText() {
+		gameplayStatsText.text = "DISTANCE : " + distance + " || COINS : " + coins;	
 	}
 }
