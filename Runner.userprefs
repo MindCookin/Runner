@@ -1,36 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/GPG/NerdGPG.cs">
+    <Files>
+      <File FileName="Assets/GPG/NerdGPG.cs" Line="15" Column="31" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Data" expanded="True" />
-                <Node name="Entities" expanded="True">
-                  <Node name="Enemy" expanded="True" />
-                  <Node name="Items" expanded="True">
-                    <Node name="Coins" expanded="True" />
-                    <Node name="Pickups" expanded="True" />
-                  </Node>
-                  <Node name="Player" expanded="True" />
-                </Node>
-                <Node name="Scenario" expanded="True">
-                  <Node name="GUI" expanded="True">
-                    <Node name="ScrollText.cs" selected="True" />
-                  </Node>
-                  <Node name="Managers" expanded="True" />
-                  <Node name="Platform" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Plugins" expanded="True">
-                <Node name="AdMobPlugin" expanded="True" />
-                <Node name="Android" expanded="True" />
+              <Node name="GPG" expanded="True">
+                <Node name="NerdGPG.cs" selected="True" />
               </Node>
             </Node>
           </Node>
