@@ -6,6 +6,7 @@ public class SessionData
 	public const string VELOCITY 			= "VELOCITY";
 	public const string COINS 				= "COINS";
 	public const string SIZE 				= "SIZE";  
+	public const string ENEMIES_SHOOTED 	= "ENEMIES_SHOOTED";
 	public const string ENEMIES_COLLIDED 	= "ENEMIES_COLLIDED";
 	public const string ENEMIES 			= "ENEMIES";		
 	public const string MISSILES_COLLIDED 	= "MISSILES_COLLIDED";
@@ -17,6 +18,7 @@ public class SessionData
 	public int velocity;
 	public int coins;
 	public int size;
+	public int enemies_shooted;
 	public int enemies_collided;
 	public int enemies;
 	public int missiles_collided;
@@ -30,6 +32,7 @@ public class SessionData
 		velocity = 0;
 		coins = 0;
 		size = 0;
+		enemies_shooted  = 0;
 		enemies_collided = 0;
 		enemies = 0;
 		missiles_collided = 0;
@@ -47,6 +50,7 @@ public class SessionData
 			case VELOCITY 			: velocity = quantity; 	break;
 			case COINS 				: coins = quantity; 	break;
 			case SIZE 				: size = quantity; 		break;  
+			case ENEMIES_SHOOTED	: enemies_shooted = quantity;  break;  
 			case ENEMIES_COLLIDED 	: enemies_collided = quantity; break;
 			case ENEMIES 			: enemies = quantity; 	break;		
 			case MISSILES_COLLIDED 	: missiles_collided = quantity; break;
@@ -64,6 +68,7 @@ public class SessionData
 			case VELOCITY 			: velocity++; 	break;
 			case COINS 				: coins++; 	break;
 			case SIZE 				: size++; 		break;  
+			case ENEMIES_SHOOTED	: enemies_shooted++;  break;
 			case ENEMIES_COLLIDED 	: enemies_collided++; break;
 			case ENEMIES 			: enemies++; 	break;		
 			case MISSILES_COLLIDED 	: missiles_collided++; break;

@@ -30,6 +30,9 @@ public class PlayerSize : MonoBehaviour {
 		
 		if ( targetSize.x > maxSize )
 			maxSize = targetSize.x;
+		
+		if ( targetSize.x >= 10 )
+			GooglePlusSocial.SubmitAchievement( GooglePlusSocial.ACHIEVEMENT_BIGFELLA );
 	}
 	
 	public void Shrink()

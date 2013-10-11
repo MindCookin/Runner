@@ -16,6 +16,9 @@ public class BulletMove : MonoBehaviour {
 		{
 			gameObject.SetActive( false );
 			other.gameObject.SetActive( false );
+			
+			PlayerDataManager.AddToValue( SessionData.ENEMIES_SHOOTED, 1 );
+			
 		} else if ( other.tag == "Platform" )
 			gameObject.SetActive( false );
 	}

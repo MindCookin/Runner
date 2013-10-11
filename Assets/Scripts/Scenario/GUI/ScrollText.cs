@@ -126,6 +126,7 @@ public class ScrollText : MonoBehaviour
 			"ENEMIES PASSED: " 	+ session.enemies + " || " +
 			"TOTAL ENEMIES PASSED: " + loaded.total_enemies + " || " +
 			"ENEMIES COLLIDED: " + session.enemies_collided +" || " +
+			"ENEMIES SHOOTED: " + session.enemies_shooted +" || " +
 			"TOTAL ENEMIES COLLIDED: " + loaded.total_enemies_collided + " || " +
 			"MISSILES PASSED: " 	+ session.missiles + " || " +
 			"TOTAL MISSILES PASSED: " + loaded.total_missiles + " || " +

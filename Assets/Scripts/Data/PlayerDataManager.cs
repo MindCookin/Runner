@@ -79,6 +79,14 @@ public class PlayerDataManager : MonoBehaviour
 		instance.session.Add( name, quantity );
 	}
 	
+	public static LoadedData GetLoadedData () {
+		return instance.loaded;
+	}
+	
+	public static SessionData GetSessionData () {
+		return instance.session;
+	}
+	
 	void UpdateLoadedData() {
 		
 		loaded.total_capsules 			+= session.capsules; 
@@ -86,6 +94,7 @@ public class PlayerDataManager : MonoBehaviour
 		loaded.total_distance 			+= session.distance;
 		loaded.total_enemies 			+= session.enemies;
 		loaded.total_enemies_collided 	+= session.enemies_collided;
+		loaded.total_enemies_shooted 	+= session.enemies_shooted;
 		loaded.total_missiles 			+= session.missiles;
 		loaded.total_missiles_collided 	+= session.missiles_collided;
 			

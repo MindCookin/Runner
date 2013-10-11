@@ -7,6 +7,8 @@ public class GUIManager : MonoBehaviour {
 	private static GUIManager instance;
 	public int coins, distance;
 	
+	int startingTimes = 0;
+	
 	void Start () {
 		
 		if ( SystemInfo.deviceType == DeviceType.Handheld )
@@ -29,6 +31,13 @@ public class GUIManager : MonoBehaviour {
 		
 		instance.coins++;
 		instance.UpdateGameplayText();
+		
+		if ( instance.coins == 50 )
+			GooglePlusSocial.SubmitAchievement( GooglePlusSocial.ACHIEVEMENT_50COINS );
+		else if ( instance.coins == 100 )
+			GooglePlusSocial.SubmitAchievement( GooglePlusSocial.ACHIEVEMENT_100COINS );
+		else if ( instance.coins == 200 )
+			GooglePlusSocial.SubmitAchievement( GooglePlusSocial.ACHIEVEMENT_200COINS );
 	}
 
 	public static void SetDistance(float dist){
@@ -42,8 +51,14 @@ public class GUIManager : MonoBehaviour {
 
 	void Update () {
 		
-		if(Input.GetButtonDown("Jump") || Input.touches.Length > 0 )
+		if(Input.GetButtonDown("Jump") )
 			GameEventManager.TriggerGameStart();
+		
+		if( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended )
+		{
+			if ( !GooglePlusButton.PRESSED )
+				GameEventManager.TriggerGameStart();
+		}
 	}
 	
 	private void GameStart () {
@@ -52,6 +67,11 @@ public class GUIManager : MonoBehaviour {
 		gameplayStatsText.enabled= true;
 		
 		enabled = false;
+		
+		startingTimes++;
+		
+		if (startingTimes >= 10 )
+			GooglePlusSocial.SubmitAchievement( GooglePlusSocial.ACHIEVEMENT_HOOKED );
 	}
 	
 	private void GameInit () {
@@ -66,6 +86,9 @@ public class GUIManager : MonoBehaviour {
 	private void GameOver () {
 		
 		gameplayStatsText.enabled= false;
+		
+		GooglePlusSocial.SubmitScore( GooglePlusSocial.LEADERBOARD_COINS, coins );
+		GooglePlusSocial.SubmitScore( GooglePlusSocial.LEADERBOARD_DISTANCE, distance );
 		
 		PlayerDataManager.SetValue( SessionData.COINS, coins );
 	}

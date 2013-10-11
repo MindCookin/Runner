@@ -59,6 +59,12 @@ public class PlayerHit : MonoBehaviour
 				if( !forceField.isOn )
 				{
 					missilesCollided++;
+				
+					PlayerDataManager.SetValue( SessionData.MISSILES_COLLIDED, missilesCollided );
+					
+					if( PlayerDataManager.GetLoadedData().total_missiles_collided >= 10 )
+						GooglePlusSocial.SubmitAchievement( GooglePlusSocial.ACHIEVEMENT_PINATA );
+					
 					playerExplosion.Explode();
 				}
 				else
@@ -79,7 +85,6 @@ public class PlayerHit : MonoBehaviour
 	
 	void GameOver() {
 		PlayerDataManager.SetValue( SessionData.CAPSULES, capsules );
-		PlayerDataManager.SetValue( SessionData.MISSILES_COLLIDED, missilesCollided );
 	}
 	
 	void addCoin() {
