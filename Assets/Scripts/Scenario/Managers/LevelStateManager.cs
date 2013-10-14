@@ -16,6 +16,7 @@ public class LevelStateManager {
 	static float GLOBAL_PLATFORM_MIN_Y_GAP 	= -5; 
 	static float GLOBAL_PLATFORM_MAX_Y_GAP 	= 5; 
 	static float GLOBAL_PLATFORM_MAX_SIZE 	= 30;
+	static float GLOBAL_MAX_PLATFORM_FALL_PERCENT	= .7f;
 	static float GLOBAL_MAX_DROP_PERCENT 	= .5f;
 	
 	float EnemyIncrement			= .025f; 
@@ -26,9 +27,10 @@ public class LevelStateManager {
 	float PlatformMinGapYIncrement	= .5f;
 	float PlatformMaxGapYIncrement	= .2f;
 	float PlatformSizeIncrement		= .05f;
+	float PlatformFallIncrement		= .02f;
 	float DropPickerIncrement		= .05f;
 	
-	float _enemyPercent, _enemyMinSize, _enemyMaxSize, _missilePercent, _platformMinXGap, _platformMaxXGap, _platformMinYGap, _platformMaxYGap, _platformMinSize, _platformMaxSize, _dropPickerPercent; 
+	float _enemyPercent, _enemyMinSize, _enemyMaxSize, _missilePercent, _platformMinXGap, _platformMaxXGap, _platformMinYGap, _platformMaxYGap, _platformMinSize, _platformMaxSize, _platformFallPercent, _dropPickerPercent; 
 	Vector3 _playerInitialPosition;
 	
 	private PlayerMove player;
@@ -90,6 +92,7 @@ public class LevelStateManager {
 		_platformMaxYGap	= 0.5f; 
 		_platformMinSize 	= 10;
 		_platformMaxSize 	= 15;
+		_platformFallPercent= 0;
 		_dropPickerPercent 	= 0;
 	}
 	
@@ -98,10 +101,11 @@ public class LevelStateManager {
 		if ( player.DistanceTraveled / UPDATE_DISTANCE > lastDistanceUpdated )
 		{
 			
-			_enemyPercent 	= ( _enemyPercent <= GLOBAL_MAX_ENEMY_PERCENT ) ? _enemyPercent + EnemyIncrement : _enemyPercent;
-			_enemyMaxSize 	= ( _enemyMaxSize <= GLOBAL_ENEMY_MAX_SIZE ) ? _enemyMaxSize + EnemySizeIncrement : _enemyMaxSize;
-			_missilePercent =  ( _missilePercent <= GLOBAL_MAX_MISSILE_PERCENT ) ? _missilePercent + MissileIncrement : _missilePercent; 
-			_dropPickerPercent = ( _dropPickerPercent <= GLOBAL_MAX_DROP_PERCENT ) ? _dropPickerPercent + DropPickerIncrement : _dropPickerPercent; 
+			_enemyPercent 			= ( _enemyPercent <= GLOBAL_MAX_ENEMY_PERCENT ) ? _enemyPercent + EnemyIncrement : _enemyPercent;
+			_enemyMaxSize 			= ( _enemyMaxSize <= GLOBAL_ENEMY_MAX_SIZE ) ? _enemyMaxSize + EnemySizeIncrement : _enemyMaxSize;
+			_missilePercent 		=  ( _missilePercent <= GLOBAL_MAX_MISSILE_PERCENT ) ? _missilePercent + MissileIncrement : _missilePercent; 
+			_dropPickerPercent 		= ( _dropPickerPercent <= GLOBAL_MAX_DROP_PERCENT ) ? _dropPickerPercent + DropPickerIncrement : _dropPickerPercent; 
+			_platformFallPercent 	= ( _platformFallPercent <= GLOBAL_MAX_PLATFORM_FALL_PERCENT ) ? _platformFallPercent + PlatformFallIncrement : _platformFallPercent; 
 			
 			if ( lastDistanceUpdated % UPDATE_PLATFORMS_EACH == 0 )
 			{	
@@ -149,6 +153,7 @@ public class LevelStateManager {
 	public float PlatformMaxYGap { get { return _platformMaxYGap; } }
 	public float PlatformMinSize { get { return _platformMinSize; } }
 	public float PlatformMaxSize { get { return _platformMaxSize; } }
+	public float PlatformFallPercent { get { return _platformFallPercent; } }
 	public float DropPickerPercent { get { return _dropPickerPercent; } }
 	public Vector3 PlayerInitialPosition { get { return _playerInitialPosition; } }
 }

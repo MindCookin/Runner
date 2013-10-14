@@ -16,7 +16,8 @@ public class GooglePlusSocial : MonoBehaviour
 
 	public static void SubmitScore( string leaderboard, int score )
 	{
-		Social.ReportScore( score, leaderboard, OnSubmitScore);
+		if( Social.localUser.authenticated )
+			Social.ReportScore( score, leaderboard, OnSubmitScore);
 	}
 	
 	private static void OnSubmitScore( bool result )
@@ -26,7 +27,8 @@ public class GooglePlusSocial : MonoBehaviour
 	
 	public static void SubmitAchievement( string achievement )
 	{
-        Social.ReportProgress( achievement, 100.0, OnUnlockAC);	
+		if( Social.localUser.authenticated )
+        	Social.ReportProgress( achievement, 100.0, OnUnlockAC);	
 	}
 	
     private static void OnUnlockAC( bool result )

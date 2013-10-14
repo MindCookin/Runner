@@ -15,7 +15,7 @@ public class PlatformManager : MonoBehaviour {
 	private Queue<Transform> platformQueue;
 	
 	private PlayerMove player;
-	private Platform platformScript;
+	private PlatformPlace platformScript;
 	
 	void Awake() {
 	
@@ -54,7 +54,7 @@ public class PlatformManager : MonoBehaviour {
 		
 		Transform targetObject = platformQueue.Dequeue();
 		
-		platformScript = targetObject.GetComponent<Platform>();
+		platformScript = targetObject.GetComponent<PlatformPlace>();
 			
 		platformScript.Place( nextPosition );
 		nextPosition = platformScript.NextPosition;
@@ -94,7 +94,7 @@ public class PlatformManager : MonoBehaviour {
 		for( int i = 0; i < queuedQuantity; i++ )
 		{
 			Transform targetObject = platformQueue.Dequeue();
-			targetObject.GetComponent<Platform>().RemoveAll();
+			targetObject.GetComponent<PlatformPlace>().RemoveItems();
 			platformQueue.Enqueue( targetObject );
 		}
 		

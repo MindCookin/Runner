@@ -77,11 +77,11 @@ public class GooglePlusButton : MonoBehaviour {
 	}
 	
 	void GameInit(){
-		enabled = true;	
+		gameObject.SetActive( true );
 	}
 	
 	void GameStart(){
-		enabled = false;	
+		gameObject.SetActive( false );
 	}
 	
 	// CALLBACKS

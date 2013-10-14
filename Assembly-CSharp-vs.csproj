@@ -51,6 +51,7 @@
      <Compile Include="Assets\GPG\NerdGPG.cs" />
      <Compile Include="Assets\GooglePlusButton.cs" />
      <Compile Include="Assets\PickupSound.cs" />
+     <Compile Include="Assets\PlatformRigidbody.cs" />
      <Compile Include="Assets\Scripts\Data\LoadedData.cs" />
      <Compile Include="Assets\Scripts\Data\PlayerDataManager.cs" />
      <Compile Include="Assets\Scripts\Data\SessionData.cs" />
@@ -60,15 +61,16 @@
      <Compile Include="Assets\Scripts\Entities\Cannon\CannonPicker.cs" />
      <Compile Include="Assets\Scripts\Entities\Cannon\CannonShoot.cs" />
      <Compile Include="Assets\Scripts\Entities\Enemy\EnemyBouncerMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Enemy\EnemyJumperMove.cs" />
      <Compile Include="Assets\Scripts\Entities\Enemy\EnemyPlace.cs" />
      <Compile Include="Assets\Scripts\Entities\Enemy\EnemySize.cs" />
      <Compile Include="Assets\Scripts\Entities\Enemy\EnemySliderMove.cs" />
      <Compile Include="Assets\Scripts\Entities\Items\Coins\Coin.cs" />
      <Compile Include="Assets\Scripts\Entities\Items\Coins\CoinDistribution.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Pickups\CapsulePlace.cs" />
      <Compile Include="Assets\Scripts\Entities\Items\Pickups\DropPickupMove.cs" />
      <Compile Include="Assets\Scripts\Entities\Items\Pickups\PickupItem.cs" />
      <Compile Include="Assets\Scripts\Entities\Items\Pickups\PickupMove.cs" />
-     <Compile Include="Assets\Scripts\Entities\Items\Pickups\PlatformPickupPlace.cs" />
      <Compile Include="Assets\Scripts\Entities\Missile\MissileMove.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\ForceField.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\PlayerColors.cs" />
@@ -76,6 +78,7 @@
      <Compile Include="Assets\Scripts\Entities\Player\PlayerForceField.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\PlayerHit.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\PlayerMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\PlayerNitro.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\PlayerShoot.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\PlayerSize.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\PlayerSounds.cs" />
@@ -91,7 +94,9 @@
      <Compile Include="Assets\Scripts\Scenario\Managers\PlatformManager.cs" />
      <Compile Include="Assets\Scripts\Scenario\Managers\SkylineManager.cs" />
      <Compile Include="Assets\Scripts\Scenario\Managers\StaticItemsManager.cs" />
-     <Compile Include="Assets\Scripts\Scenario\Platform\Platform.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Platform\PlatformCapsule.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Platform\PlatformEnemies.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Platform\PlatformPlace.cs" />
      <Compile Include="Assets\Scripts\Scenario\TitleText.cs" />
      <Compile Include="Assets\Scripts\TestsOrUnused\TestScript.cs" />
      <Compile Include="Assets\Scripts\Utils\EntityList.cs" />

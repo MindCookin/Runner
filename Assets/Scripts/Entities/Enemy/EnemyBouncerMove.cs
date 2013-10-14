@@ -8,7 +8,7 @@ public class EnemyBouncerMove : MonoBehaviour {
 	
 	private bool _touchingPlatform;
 	
-	public void Setup( Transform platfrm )
+	public void Setup()
 	{
 		transform.Translate( 0, 2, 0 );
 		rigidbody.angularVelocity = Vector3.zero;

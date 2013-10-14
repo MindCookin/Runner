@@ -7,8 +7,6 @@ public class ScrollText : MonoBehaviour
 	public GUIText textField;
 //	public string text = "Here is some text to scroll";
 	
-	Rect rect;
-
 	string textUsing;
 	string scrollBasis;
 	string scrollText;
@@ -38,8 +36,6 @@ public class ScrollText : MonoBehaviour
 		GameEventManager.GameInit 	+= GameInit;
 		GameEventManager.GameStart 	+= GameStart;
 		GameEventManager.GameOver 	+= GameOver; 
-		
-		rect = new Rect( 0, Screen.height - 25, Screen.width + 50, 20 );
 		
 	    NewText();
 		

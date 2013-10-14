@@ -12,7 +12,7 @@ public class TestScript : MonoBehaviour {
 		platform = (Transform)Instantiate(platform);
 		enemy	 = (Transform)Instantiate(enemy);
 		
-		platform.GetComponent<Platform>().Place( platformPosition ); 
+		platform.GetComponent<PlatformPlace>().Place( platformPosition ); 
 		enemy.GetComponent<EnemyPlace>().Place( platform );
 		
 		GameEventManager.TriggerGameStart();

@@ -15,15 +15,15 @@ public class EnemyPlace : MonoBehaviour {
 		targetScale.z = 1;
 		transform.localScale = targetScale;
 		
-		initialPosition = platform.localPosition;
+		initialPosition = platform.position;
 		initialPosition.y += transform.localScale.y;
 		transform.position = initialPosition;
 		
 		if( GetComponent<EnemySliderMove>() )
 			GetComponent<EnemySliderMove>().Setup( platform );
-		else 
-			GetComponent<EnemyBouncerMove>().Setup( platform );
-		
-		gameObject.SetActive(true);
+		else if ( GetComponent<EnemyBouncerMove>() )
+			GetComponent<EnemyBouncerMove>().Setup();
+		else if ( GetComponent<EnemyJumperMove>() )
+			GetComponent<EnemyJumperMove>().Setup();
 	}
 }
