@@ -44,14 +44,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BackButton.cs" />
-     <Compile Include="Assets\FacebookButton.cs" />
      <Compile Include="Assets\GPG\GPGGui.cs" />
      <Compile Include="Assets\GPG\GPGSocial.cs" />
      <Compile Include="Assets\GPG\NerdGPG.cs" />
-     <Compile Include="Assets\GooglePlusButton.cs" />
-     <Compile Include="Assets\PickupSound.cs" />
-     <Compile Include="Assets\PlatformRigidbody.cs" />
      <Compile Include="Assets\Scripts\Data\LoadedData.cs" />
      <Compile Include="Assets\Scripts\Data\PlayerDataManager.cs" />
      <Compile Include="Assets\Scripts\Data\SessionData.cs" />
@@ -71,6 +66,7 @@
      <Compile Include="Assets\Scripts\Entities\Items\Pickups\DropPickupMove.cs" />
      <Compile Include="Assets\Scripts\Entities\Items\Pickups\PickupItem.cs" />
      <Compile Include="Assets\Scripts\Entities\Items\Pickups\PickupMove.cs" />
+     <Compile Include="Assets\Scripts\Entities\Items\Pickups\PickupSound.cs" />
      <Compile Include="Assets\Scripts\Entities\Missile\MissileMove.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\ForceField.cs" />
      <Compile Include="Assets\Scripts\Entities\Player\PlayerColors.cs" />
@@ -85,7 +81,9 @@
      <Compile Include="Assets\Scripts\GooglePlusSocial.cs" />
      <Compile Include="Assets\Scripts\Scenario\BackgroundMusic.cs" />
      <Compile Include="Assets\Scripts\Scenario\Camera\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\Scenario\GUI\FacebookButton.cs" />
      <Compile Include="Assets\Scripts\Scenario\GUI\GUIManager.cs" />
+     <Compile Include="Assets\Scripts\Scenario\GUI\GooglePlusButton.cs" />
      <Compile Include="Assets\Scripts\Scenario\GUI\ScrollText.cs" />
      <Compile Include="Assets\Scripts\Scenario\Managers\DropItemsManager.cs" />
      <Compile Include="Assets\Scripts\Scenario\Managers\GameEventManager.cs" />
@@ -97,8 +95,10 @@
      <Compile Include="Assets\Scripts\Scenario\Platform\PlatformCapsule.cs" />
      <Compile Include="Assets\Scripts\Scenario\Platform\PlatformEnemies.cs" />
      <Compile Include="Assets\Scripts\Scenario\Platform\PlatformPlace.cs" />
+     <Compile Include="Assets\Scripts\Scenario\Platform\PlatformRigidbody.cs" />
      <Compile Include="Assets\Scripts\Scenario\TitleText.cs" />
      <Compile Include="Assets\Scripts\TestsOrUnused\TestScript.cs" />
+     <Compile Include="Assets\Scripts\Utils\BackButton.cs" />
      <Compile Include="Assets\Scripts\Utils\EntityList.cs" />
      <Compile Include="Assets\Scripts\Utils\FPSCounter.cs" />
      <Compile Include="Assets\Scripts\Utils\PickupList.cs" />
