@@ -10,7 +10,7 @@ public class PlayerHit : MonoBehaviour
 	private PlayerExplosion playerExplosion;
 	private ForceField forceField;
 	private PlayerSounds playerSounds;
-	private PlayerNitro playerNitro;
+//	private PlayerNitro playerNitro;
 	
 	private int missilesCollided, capsules;
 	
@@ -25,7 +25,7 @@ public class PlayerHit : MonoBehaviour
 		playerColors		= GetComponent<PlayerColors>();
 		playerExplosion		= GetComponent<PlayerExplosion>();
 		playerSounds		= GetComponent<PlayerSounds>();
-		playerNitro			= GetComponent<PlayerNitro>();
+//		playerNitro			= GetComponent<PlayerNitro>();
 		
 		// listen to game events
 		GameEventManager.GameStart += GameStart;
@@ -108,7 +108,7 @@ public class PlayerHit : MonoBehaviour
 //			case "Small" :  playerSize.ChangeSize( PlayerSize.SMALL ); 		break;
 			case "Shoot" :  playerShoot.StartShooting(); 					break;
 			case "Force" :  playerForceField.Show(); 						break;	
-			case "Nitro" :  playerNitro.Explode(); 							break;	
+//			case "Nitro" :  playerNitro.Explode(); 							break;	
 		}
 	}
 }

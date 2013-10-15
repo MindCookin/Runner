@@ -10,6 +10,9 @@ public class EnemyJumperMove : MonoBehaviour {
 	
 	public void Setup()
 	{
+		renderer.enabled = true;
+		rigidbody.detectCollisions = true;
+		
 		transform.Translate( 0, 2, 0 );
 		rigidbody.angularVelocity = Vector3.zero;
 		rigidbody.velocity = Vector3.zero;

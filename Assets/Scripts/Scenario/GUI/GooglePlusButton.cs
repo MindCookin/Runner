@@ -7,6 +7,8 @@ public class GooglePlusButton : MonoBehaviour {
 	
 	public static bool PRESSED = false;
 	
+	private const string CONNECTED_PREVIOUSLY = "CONNECTED_PREVIOUSLY";
+	
 	public GUITexture googlePlusTexture;
 	public GUIText googlePlusText;
 	
@@ -22,17 +24,15 @@ public class GooglePlusButton : MonoBehaviour {
 		
         Social.Active = new UnityEngine.SocialPlatforms.GPGSocial();
 		
-		Debug.Log( "______**************_______" + Social.localUser.userName );
+		int isConnectedPreviously = PlayerPrefs.GetInt( CONNECTED_PREVIOUSLY, -1 );
 		
-		/*
-		if ( Social.localUser.authenticated )
+		if ( isConnectedPreviously > 0 )
 			Social.localUser.Authenticate(OnAuthCB);
-		*/
+			
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameInit += GameInit;
 		
 		googlePlusText.text = "Connect with Google Plus\nfor leaderboards and achievements.";
-		
 	}
 	
 	void OnApplicationFocus (bool focus) {
@@ -104,8 +104,10 @@ public class GooglePlusButton : MonoBehaviour {
 		{
 			// load Achievements
         	Social.LoadAchievements(OnLoadAC);
+			PlayerPrefs.SetInt( CONNECTED_PREVIOUSLY, 1 );
 		} else {
 			// if we are not logged, let the user continue playing
+			PlayerPrefs.SetInt( CONNECTED_PREVIOUSLY, -1 );
 			PRESSED = false;	
 		}
     }

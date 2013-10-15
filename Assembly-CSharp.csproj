@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EnemyJumperExplode.cs" />
      <Compile Include="Assets\GPG\GPGGui.cs" />
      <Compile Include="Assets\GPG\GPGSocial.cs" />
      <Compile Include="Assets\GPG\NerdGPG.cs" />
